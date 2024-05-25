@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:hotel_app/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'navigation_home_screen.dart';
+import 'navigation/main_navigation.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 void main() async {
