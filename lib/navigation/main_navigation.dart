@@ -1,9 +1,9 @@
-import 'package:hotel_app/app_theme.dart';
+import 'package:hotel_app/themes/app_theme.dart';
 import 'package:hotel_app/custom_drawer/drawer_user_controller.dart';
 import 'package:hotel_app/custom_drawer/home_drawer.dart';
 import 'package:hotel_app/screens/feedback_screen.dart';
 import 'package:hotel_app/screens/help_screen.dart';
-import 'package:hotel_app/hotel_booking/hotel_home_screen.dart';
+import 'package:hotel_app/screens/home_screen.dart';
 import 'package:hotel_app/screens/invite_friend_screen.dart';
 import 'package:flutter/material.dart';
 

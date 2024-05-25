@@ -1,4 +1,4 @@
-import 'package:hotel_app/app_theme.dart';
+import 'package:hotel_app/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class HelpScreen extends StatefulWidget {
