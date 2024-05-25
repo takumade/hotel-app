@@ -1,3 +1,4 @@
+import 'package:hotel_app/screens/favorite_screen.dart';
 import 'package:hotel_app/screens/order/cart_screen.dart';
 import 'package:hotel_app/widgets/home/calendar_popup_view.dart';
 import 'package:hotel_app/widgets/home/hotel_list_view.dart';
@@ -557,7 +558,14 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       borderRadius: const BorderRadius.all(
                         Radius.circular(32.0),
                       ),
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push<dynamic>(
+                        context,
+                        MaterialPageRoute<dynamic>(
+                            builder: (BuildContext context) => FavoriteScreen(),
+                            ),
+                      );
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(Icons.favorite_border),
