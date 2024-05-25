@@ -1,3 +1,4 @@
+import 'package:hotel_app/screens/order/cart_screen.dart';
 import 'package:hotel_app/widgets/home/calendar_popup_view.dart';
 import 'package:hotel_app/widgets/home/hotel_list_view.dart';
 import 'package:hotel_app/model/hotel_list_data.dart';
@@ -569,7 +570,15 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       borderRadius: const BorderRadius.all(
                         Radius.circular(32.0),
                       ),
-                      onTap: () {},
+                      onTap: () {
+
+                        Navigator.push<dynamic>(
+                        context,
+                        MaterialPageRoute<dynamic>(
+                            builder: (BuildContext context) => CartScreen(),
+                            ),
+                      );
+                      },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Icon(Icons.shopping_basket),
