@@ -14,7 +14,7 @@ class HotelListView extends StatelessWidget {
       this.callback})
       : super(key: key);
 
-  final VoidCallback? callback;
+  final Function? callback;
   final HotelListData? hotelData;
   final AnimationController? animationController;
   final Animation<double>? animation;
@@ -34,7 +34,9 @@ class HotelListView extends StatelessWidget {
                   left: 24, right: 24, top: 8, bottom: 16),
               child: InkWell(
                 splashColor: Colors.transparent,
-                onTap: callback,
+                onTap: () => {
+                  callback!(hotelData)
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(16.0)),

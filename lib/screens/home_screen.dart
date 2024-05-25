@@ -1,4 +1,5 @@
 import 'package:hotel_app/screens/favorite_screen.dart';
+import 'package:hotel_app/screens/hotel_detail_screen.dart';
 import 'package:hotel_app/screens/order/cart_screen.dart';
 import 'package:hotel_app/widgets/home/calendar_popup_view.dart';
 import 'package:hotel_app/widgets/home/hotel_list_view.dart';
@@ -105,7 +106,16 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                                               curve: Curves.fastOutSlowIn)));
                               animationController?.forward();
                               return HotelListView(
-                                callback: () {},
+                                callback: (HotelListData hotel) {
+                                    Navigator.push<dynamic>(
+                        context,
+                        MaterialPageRoute<dynamic>(
+                            builder: (BuildContext context) => HotelDetailScreen(
+                              hotel: hotel
+                            ),
+                            ),
+                      );
+                                },
                                 hotelData: hotelList[index],
                                 animation: animation,
                                 animationController: animationController!,
