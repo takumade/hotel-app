@@ -107,14 +107,13 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                               animationController?.forward();
                               return HotelListView(
                                 callback: (HotelListData hotel) {
-                                    Navigator.push<dynamic>(
-                        context,
-                        MaterialPageRoute<dynamic>(
-                            builder: (BuildContext context) => HotelDetailScreen(
-                              hotel: hotel
-                            ),
-                            ),
-                      );
+                                  Navigator.push<dynamic>(
+                                    context,
+                                    MaterialPageRoute<dynamic>(
+                                      builder: (BuildContext context) =>
+                                          HotelDetailScreen(hotel: hotel),
+                                    ),
+                                  );
                                 },
                                 hotelData: hotelList[index],
                                 animation: animation,
@@ -539,11 +538,10 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
         child: Row(
           children: <Widget>[
             Container(
-              alignment: Alignment.centerLeft,
-              width: AppBar().preferredSize.height + 40,
-              height: AppBar().preferredSize.height,
-              child: null
-            ),
+                alignment: Alignment.centerLeft,
+                width: AppBar().preferredSize.height + 40,
+                height: AppBar().preferredSize.height,
+                child: null),
             Expanded(
               child: Center(
                 child: Text(
@@ -570,11 +568,11 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       ),
                       onTap: () {
                         Navigator.push<dynamic>(
-                        context,
-                        MaterialPageRoute<dynamic>(
+                          context,
+                          MaterialPageRoute<dynamic>(
                             builder: (BuildContext context) => FavoriteScreen(),
-                            ),
-                      );
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -589,13 +587,12 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                         Radius.circular(32.0),
                       ),
                       onTap: () {
-
                         Navigator.push<dynamic>(
-                        context,
-                        MaterialPageRoute<dynamic>(
+                          context,
+                          MaterialPageRoute<dynamic>(
                             builder: (BuildContext context) => CartScreen(),
-                            ),
-                      );
+                          ),
+                        );
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
