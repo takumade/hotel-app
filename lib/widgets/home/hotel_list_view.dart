@@ -136,22 +136,16 @@ class HotelListView extends StatelessWidget {
                                                     ratingWidget: RatingWidget(
                                                       full: Icon(
                                                         Icons.star_rate_rounded,
-                                                        color: HotelAppTheme
-                                                                .buildLightTheme()
-                                                            .primaryColor,
+                                                        color: Colors.amber,
                                                       ),
                                                       half: Icon(
                                                         Icons.star_half_rounded,
-                                                        color: HotelAppTheme
-                                                                .buildLightTheme()
-                                                            .primaryColor,
+                                                        color: Colors.amber,
                                                       ),
                                                       empty: Icon(
                                                         Icons
                                                             .star_border_rounded,
-                                                        color: HotelAppTheme
-                                                                .buildLightTheme()
-                                                            .primaryColor,
+                                                        color: Colors.amber,
                                                       ),
                                                     ),
                                                     itemPadding:
