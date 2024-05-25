@@ -1,10 +1,11 @@
-import 'package:best_flutter_ui_templates/app_theme.dart';
-import 'package:best_flutter_ui_templates/custom_drawer/drawer_user_controller.dart';
-import 'package:best_flutter_ui_templates/custom_drawer/home_drawer.dart';
-import 'package:best_flutter_ui_templates/feedback_screen.dart';
-import 'package:best_flutter_ui_templates/help_screen.dart';
-import 'package:best_flutter_ui_templates/home_screen.dart';
-import 'package:best_flutter_ui_templates/invite_friend_screen.dart';
+import 'package:hotel_app/app_theme.dart';
+import 'package:hotel_app/custom_drawer/drawer_user_controller.dart';
+import 'package:hotel_app/custom_drawer/home_drawer.dart';
+import 'package:hotel_app/feedback_screen.dart';
+import 'package:hotel_app/help_screen.dart';
+import 'package:hotel_app/home_screen.dart';
+import 'package:hotel_app/hotel_booking/hotel_home_screen.dart';
+import 'package:hotel_app/invite_friend_screen.dart';
 import 'package:flutter/material.dart';
 
 class NavigationHomeScreen extends StatefulWidget {
@@ -39,7 +40,7 @@ class _NavigationHomeScreenState extends State<NavigationHomeScreen> {
               changeIndex(drawerIndexdata);
               //callback from drawer for replace screen as user need with passing DrawerIndex(Enum index)
             },
-            screenView: screenView,
+            screenView: HotelHomeScreen(),
             //we replace screen view as we need on navigate starting screens like MyHomePage, HelpScreen, FeedbackScreen, etc...
           ),
         ),

@@ -1,10 +1,10 @@
-import 'package:best_flutter_ui_templates/fitness_app/ui_view/body_measurement.dart';
-import 'package:best_flutter_ui_templates/fitness_app/ui_view/glass_view.dart';
-import 'package:best_flutter_ui_templates/fitness_app/ui_view/mediterranean_diet_view.dart';
-import 'package:best_flutter_ui_templates/fitness_app/ui_view/title_view.dart';
-import 'package:best_flutter_ui_templates/fitness_app/fitness_app_theme.dart';
-import 'package:best_flutter_ui_templates/fitness_app/my_diary/meals_list_view.dart';
-import 'package:best_flutter_ui_templates/fitness_app/my_diary/water_view.dart';
+import 'package:hotel_app/fitness_app/ui_view/body_measurement.dart';
+import 'package:hotel_app/fitness_app/ui_view/glass_view.dart';
+import 'package:hotel_app/fitness_app/ui_view/mediterranean_diet_view.dart';
+import 'package:hotel_app/fitness_app/ui_view/title_view.dart';
+import 'package:hotel_app/fitness_app/fitness_app_theme.dart';
+import 'package:hotel_app/fitness_app/my_diary/meals_list_view.dart';
+import 'package:hotel_app/fitness_app/my_diary/water_view.dart';
 import 'package:flutter/material.dart';
 
 class MyDiaryScreen extends StatefulWidget {
