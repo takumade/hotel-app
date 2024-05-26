@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hotel_app/model/hotel_list_data.dart';
@@ -22,6 +23,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
       data: HotelAppTheme.buildLightTheme(),
       child: Container(
         child: Scaffold(
+          backgroundColor: HotelAppTheme.buildLightTheme().canvasColor,
           body: Stack(
             children: <Widget>[
               InkWell(
@@ -32,7 +34,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                 onTap: () {
                   FocusScope.of(context).requestFocus(FocusNode());
                 },
-                child: Column(children: <Widget>[
+                child: ListView(children: <Widget>[
                   CustomAppBar(title: "Details"),
                   Column(
                     children: [
@@ -131,7 +133,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                             .background,
                       ),
 
-                       ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.add_shopping_cart_sharp), label: Text("Reserve"))
+                       Container(child: ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.add_shopping_cart_sharp), label: Text("Reserve")))
                     ],
                   )
                 ]),
@@ -153,23 +155,52 @@ class FacilitiesChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 10),
-      child: Row(
+      child: Wrap(
         children: [
-          FilterChip(
-            onSelected: (bool value) {
-              print("selected");
-            },
-            label: Text(
-              "Shower",
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black87),
-            ),
-            backgroundColor: Colors.grey.withOpacity(0.1),
-            shape: StadiumBorder(side: BorderSide(color: Colors.black12)),
-          )
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
+          Facility(),
         ],
+      ),
+    );
+  }
+}
+
+class Facility extends StatelessWidget {
+  const Facility({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(left: 6),
+      child: FilterChip(
+        onSelected: (bool value) {
+          print("selected");
+        },
+        label: Text(
+          "Shower",
+          style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87),
+        ),
+        backgroundColor: Colors.grey.withOpacity(0.1),
+        shape: StadiumBorder(side: BorderSide(color: Colors.black12)),
       ),
     );
   }
