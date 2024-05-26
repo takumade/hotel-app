@@ -103,6 +103,11 @@ class HotelListView extends StatelessWidget {
                                                 const SizedBox(
                                                   width: 4,
                                                 ),
+                                                
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
                                                 Icon(
                                                   FontAwesomeIcons.locationDot,
                                                   size: 12,
@@ -110,6 +115,7 @@ class HotelListView extends StatelessWidget {
                                                           .buildLightTheme()
                                                       .primaryColor,
                                                 ),
+                                                SizedBox( width: 5,),
                                                 Expanded(
                                                   child: Text(
                                                     '${hotelData!.dist.toStringAsFixed(1)} km to city',
