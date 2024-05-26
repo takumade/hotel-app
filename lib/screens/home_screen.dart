@@ -88,7 +88,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                         },
                         body: Container(
                           color:
-                              HotelAppTheme.buildLightTheme().backgroundColor,
+                              HotelAppTheme.buildLightTheme().colorScheme.background,
                           child: ListView.builder(
                             itemCount: hotelList.length,
                             padding: const EdgeInsets.only(top: 8),
