@@ -33,7 +33,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                   FocusScope.of(context).requestFocus(FocusNode());
                 },
                 child: Column(children: <Widget>[
-                  CustomAppBar(),
+                  CustomAppBar(title: "Details"),
                   Column(
                     children: [
                       Container(
@@ -63,20 +63,23 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                 Positioned.fill(
                                     top: 160,
                                     child: Container(
-                                      decoration:  BoxDecoration(
-    color: HotelAppTheme.buildLightTheme()
-                                            .colorScheme
-                                            .background,
-    borderRadius: BorderRadius.all(Radius.circular(10)),
-    boxShadow: [
-      BoxShadow(
-        color: Colors.grey.withOpacity(0.5),
-        spreadRadius: 5,
-        blurRadius: 7,
-        offset: Offset(0, 3), // changes position of shadow
-      ),
-    ],
-  ),
+                                        decoration: BoxDecoration(
+                                          color: HotelAppTheme.buildLightTheme()
+                                              .colorScheme
+                                              .background,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10)),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 5,
+                                              blurRadius: 7,
+                                              offset: Offset(0,
+                                                  3), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
                                         margin: EdgeInsets.only(
                                             left: 12, right: 12),
                                         padding: const EdgeInsets.only(

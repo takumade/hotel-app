@@ -59,7 +59,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                 },
                 child: Column(
                   children: <Widget>[
-                    CustomAppBar(),
+                    CustomAppBar(title: "Explore"),
                     Expanded(
                       child: NestedScrollView(
                         controller: _scrollController,

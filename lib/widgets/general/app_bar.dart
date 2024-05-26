@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 
 class CustomAppBar extends StatelessWidget {
-  const CustomAppBar({super.key});
+   final String title;
+  const CustomAppBar({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class CustomAppBar extends StatelessWidget {
             Expanded(
               child: Center(
                 child: Text(
-                  'Explore',
+                  this.title,
                   style: TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 22,
