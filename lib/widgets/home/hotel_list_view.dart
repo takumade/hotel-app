@@ -192,6 +192,7 @@ class HotelListView extends StatelessWidget {
                                           style: TextStyle(
                                             fontWeight: FontWeight.w600,
                                             fontSize: 22,
+                                            color: HotelAppTheme.buildLightTheme().primaryColor
                                           ),
                                         ),
                                         Text(
