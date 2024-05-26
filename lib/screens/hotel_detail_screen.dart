@@ -130,6 +130,8 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                             .colorScheme
                             .background,
                       ),
+
+                       ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.add_shopping_cart_sharp), label: Text("Reserve"))
                     ],
                   )
                 ]),
