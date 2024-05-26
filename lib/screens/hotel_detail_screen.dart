@@ -160,13 +160,13 @@ class FacilitiesChip extends StatelessWidget {
               print("selected");
             },
             label: Text(
-              "Meow",
+              "Shower",
               style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   color: Colors.black87),
             ),
-            backgroundColor: Colors.transparent,
+            backgroundColor: Colors.grey.withOpacity(0.1),
             shape: StadiumBorder(side: BorderSide(color: Colors.black12)),
           )
         ],
