@@ -228,7 +228,10 @@ class HotelDetailTitle extends StatelessWidget {
               children: [
                 Text("\$55",
                     style:
-                        TextStyle(fontSize: 22, fontWeight: FontWeight.bold)),
+                        TextStyle(
+                          fontSize: 22, 
+                          fontWeight: FontWeight.bold,
+                          color: HotelAppTheme.buildLightTheme().primaryColor)),
                 Text("/night")
               ],
             )
