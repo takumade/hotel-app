@@ -108,24 +108,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600))),
-                            Row(
-                              children: [
-                                Chip(
-                                    label: Text(
-                                      "Meow",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black87),
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.only(
-                                            topRight: Radius.circular(20),
-                                            bottomRight: Radius.circular(20),
-                                            bottomLeft: Radius.circular(20),
-                                            topLeft: Radius.circular(20))))
-                              ],
-                            )
+                            FacilitiesChip()
                           ],
                         ),
                         padding: const EdgeInsets.only(
@@ -141,6 +124,37 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class FacilitiesChip extends StatelessWidget {
+  const FacilitiesChip({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(top: 10),
+      child: Row(
+        children: [
+          FilterChip(
+            onSelected: (bool value) {
+              print("selected");
+            },
+            label: Text(
+              "Meow",
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black87),
+            ),
+            backgroundColor: Colors.transparent,
+            shape: StadiumBorder(side: BorderSide(color: Colors.black12)),
+          )
+        ],
       ),
     );
   }
