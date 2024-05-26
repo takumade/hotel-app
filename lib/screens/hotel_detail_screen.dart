@@ -38,6 +38,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                     children: [
                       Container(
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Stack(
                               children: [
@@ -91,6 +92,40 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                             HotelDetailTitle(widget: widget)))
                               ],
                             ),
+                            Container(
+                                margin: EdgeInsets.only(top: 25),
+                                child: Text("About",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600))),
+                            Container(
+                                margin: EdgeInsets.only(top: 5),
+                                child: Text(
+                                    "Positioned is a widget that comes built-in with flutter SDK. Positioned does exactly what it sounds like, which is it arbitrarily positioned widgets on top of each other. It is usually used to position child widgets in Stack widget or similar. It only works for")),
+                            Container(
+                                margin: EdgeInsets.only(top: 25),
+                                child: Text("Facilities",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600))),
+                            Row(
+                              children: [
+                                Chip(
+                                    label: Text(
+                                      "Meow",
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w600,
+                                          color: Colors.black87),
+                                    ),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(20),
+                                            bottomRight: Radius.circular(20),
+                                            bottomLeft: Radius.circular(20),
+                                            topLeft: Radius.circular(20))))
+                              ],
+                            )
                           ],
                         ),
                         padding: const EdgeInsets.only(
