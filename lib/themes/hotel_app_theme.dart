@@ -22,9 +22,11 @@ class HotelAppTheme {
   }
 
   static ThemeData buildLightTheme() {
-    final Color primaryColor = HexColor('#54D3C2');
-    final Color secondaryColor = HexColor('#54D3C2');
+    final Color primaryColor = HexColor('#4e987e');
+    final Color normalColor = HexColor('#ffffff');
+    final Color secondaryColor = HexColor('#4e987e');
     final ColorScheme colorScheme = const ColorScheme.light().copyWith(
+      tertiary: normalColor,
       primary: primaryColor,
       secondary: secondaryColor,
     );
@@ -37,8 +39,14 @@ class HotelAppTheme {
       canvasColor: Colors.white,
       scaffoldBackgroundColor: const Color(0xFFF6F6F6),
       buttonTheme: ButtonThemeData(
-        colorScheme: colorScheme,
-        textTheme: ButtonTextTheme.primary,
+        buttonColor: primaryColor,
+        textTheme: ButtonTextTheme.normal
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all<Color>(primaryColor),
+          foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+        )
       ),
       textTheme: _buildTextTheme(base.textTheme),
       primaryTextTheme: _buildTextTheme(base.primaryTextTheme),
