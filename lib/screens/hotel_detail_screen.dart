@@ -6,8 +6,8 @@ import '../themes/hotel_app_theme.dart';
 
 class HotelDetailScreen extends StatefulWidget {
   final HotelListData hotel;
-   final ScrollController _scrollController = ScrollController();
-  
+  final ScrollController _hotelDetailScrollController = ScrollController();
+
   HotelDetailScreen({super.key, required this.hotel});
 
   @override
@@ -34,23 +34,53 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                 child: Column(
                   children: <Widget>[
                     CustomAppBar(),
-                    Expanded(
-                      child: NestedScrollView(
-                        controller: widget._scrollController,
-                        headerSliverBuilder:
-                            (BuildContext context, bool innerBoxIsScrolled) {
-                          return <Widget>[
-                           
-                          ];
-                        },
-                        body: Container(
-                          color:
-                              HotelAppTheme.buildLightTheme().backgroundColor,
-                          child: Text('Hotels Details')
-                          ),
-                        ),
-                      ),
-                    
+                    Container(
+                            padding: const EdgeInsets.only(
+                                left: 24, right: 24, top: 8, bottom: 16),
+                            color:
+                                HotelAppTheme.buildLightTheme().backgroundColor,
+                            child: Column(children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.all(Radius.circular(18.0)),
+                                  child: Image(image: AssetImage(widget.hotel.imagePath),),),
+
+                                  ClipRRect(
+                                  borderRadius: BorderRadius.all(Radius.circular(18.0)),
+                                  child: Row(
+                                    children: [
+
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [ Text(widget.hotel.titleTxt,  textAlign: TextAlign.left, style: TextStyle(
+                                               
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: 22,
+                                              )), 
+                                              Row(
+                                                children: [
+                                                Row(
+                                                children: [
+                                                  Icon(Icons.star, color: Colors.amber,),
+                                                  Text("4.7")
+                                                ],
+                                              ),
+                                               Row(
+                                                children: [
+                                                  Icon(Icons.location_on,),
+                                                  Text("5 km")
+                                                ],
+                                              )],
+                                              )
+                                              
+                                              ]
+                                      )
+                                    ],
+                                  ))
+
+
+
+                            ],)
+                    )
                   ],
                 ),
               ),
