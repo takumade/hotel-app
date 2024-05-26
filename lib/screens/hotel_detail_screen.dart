@@ -92,8 +92,21 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                             HotelDetailTitle(widget: widget)))
                               ],
                             ),
+
                             Container(
-                                margin: EdgeInsets.only(top: 25),
+                                margin: EdgeInsets.only(top: 20),
+                              child: Row(
+                                children: [
+                                  Icon(Icons.hotel_rounded),
+                                  
+                                  Container(
+                                      margin: EdgeInsets.only(left: 10),
+                                    child: Text('119 Josiah Tongogara Street, \nHarare, Zimbabwe'))
+                                ],
+                              ),
+                            ),
+                            Container(
+                                margin: EdgeInsets.only(top: 20),
                                 child: Text("About",
                                     style: TextStyle(
                                         fontSize: 20,
@@ -116,7 +129,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                         color: HotelAppTheme.buildLightTheme()
                             .colorScheme
                             .background,
-                      )
+                      ),
                     ],
                   )
                 ]),
