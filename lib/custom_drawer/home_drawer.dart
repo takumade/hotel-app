@@ -232,7 +232,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                         )
                       : Icon(listData.icon?.icon,
                           color: widget.screenIndex == listData.index
-                              ? Colors.blue
+                              ? HotelAppTheme.buildLightTheme().primaryColor
                               : AppTheme.nearlyBlack),
                   const Padding(
                     padding: EdgeInsets.all(4.0),
