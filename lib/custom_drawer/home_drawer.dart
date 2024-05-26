@@ -1,5 +1,6 @@
 import 'package:hotel_app/themes/app_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hotel_app/themes/hotel_app_theme.dart';
 
 class HomeDrawer extends StatefulWidget {
   const HomeDrawer(
@@ -269,7 +270,7 @@ class _HomeDrawerState extends State<HomeDrawer> {
                                 MediaQuery.of(context).size.width * 0.75 - 64,
                             height: 46,
                             decoration: BoxDecoration(
-                              color: Colors.blue.withOpacity(0.2),
+                              color: HotelAppTheme.buildLightTheme().primaryColor.withOpacity(0.2),
                               borderRadius: new BorderRadius.only(
                                 topLeft: Radius.circular(0),
                                 topRight: Radius.circular(28),
