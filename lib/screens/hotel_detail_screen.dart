@@ -34,9 +34,10 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                 onTap: () {
                   FocusScope.of(context).requestFocus(FocusNode());
                 },
-                child: ListView(children: <Widget>[
+                child: Column(children: <Widget>[
                   CustomAppBar(title: "Details"),
-                  Column(
+                  Expanded(
+                      child: ListView(
                     children: [
                       Container(
                         child: Column(
@@ -94,16 +95,15 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                             HotelDetailTitle(widget: widget)))
                               ],
                             ),
-
                             Container(
-                                margin: EdgeInsets.only(top: 20),
+                              margin: EdgeInsets.only(top: 20),
                               child: Row(
                                 children: [
                                   Icon(Icons.hotel_rounded),
-                                  
                                   Container(
                                       margin: EdgeInsets.only(left: 10),
-                                    child: Text('119 Josiah Tongogara Street, \nHarare, Zimbabwe'))
+                                      child: Text(
+                                          '119 Josiah Tongogara Street, \nHarare, Zimbabwe'))
                                 ],
                               ),
                             ),
@@ -123,7 +123,14 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600))),
-                            FacilitiesChip()
+                            FacilitiesChip(),
+                            Center(
+                              child: Container(
+                                  child: ElevatedButton.icon(
+                                      onPressed: () {},
+                                      icon: Icon(Icons.add_shopping_cart_sharp),
+                                      label: Text("Reserve"))),
+                            )
                           ],
                         ),
                         padding: const EdgeInsets.only(
@@ -132,10 +139,8 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                             .colorScheme
                             .background,
                       ),
-
-                       Container(child: ElevatedButton.icon(onPressed: (){}, icon: Icon(Icons.add_shopping_cart_sharp), label: Text("Reserve")))
                     ],
-                  )
+                  ))
                 ]),
               ),
             ],
@@ -161,18 +166,7 @@ class FacilitiesChip extends StatelessWidget {
           Facility(),
           Facility(),
           Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
+          Facility()
         ],
       ),
     );
@@ -195,9 +189,7 @@ class Facility extends StatelessWidget {
         label: Text(
           "Shower",
           style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: Colors.black87),
+              fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87),
         ),
         backgroundColor: Colors.grey.withOpacity(0.1),
         shape: StadiumBorder(side: BorderSide(color: Colors.black12)),
@@ -258,11 +250,10 @@ class HotelDetailTitle extends StatelessWidget {
             Column(
               children: [
                 Text("\$55",
-                    style:
-                        TextStyle(
-                          fontSize: 22, 
-                          fontWeight: FontWeight.bold,
-                          color: HotelAppTheme.buildLightTheme().primaryColor)),
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: HotelAppTheme.buildLightTheme().primaryColor)),
                 Text("/night")
               ],
             )
