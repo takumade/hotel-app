@@ -70,8 +70,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                                   (BuildContext context, int index) {
                                 return Column(
                                   children: <Widget>[
-                                    getSearchBarUI(),
-                                    getTimeDateUI(),
+                                    getSearchBarUI()
                                   ],
                                 );
                               }, childCount: 1),
@@ -222,59 +221,59 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
               ],
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Container(
-              width: 1,
-              height: 42,
-              color: Colors.grey.withOpacity(0.8),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(right: 8),
+          //   child: Container(
+          //     width: 1,
+          //     height: 42,
+          //     color: Colors.grey.withOpacity(0.8),
+          //   ),
+          // ),
           Expanded(
             child: Row(
               children: <Widget>[
-                Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    focusColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    splashColor: Colors.grey.withOpacity(0.2),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(4.0),
-                    ),
-                    onTap: () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 8, right: 8, top: 4, bottom: 4),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            'Number of Rooms',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w100,
-                                fontSize: 16,
-                                color: Colors.grey.withOpacity(0.8)),
-                          ),
-                          const SizedBox(
-                            height: 8,
-                          ),
-                          Text(
-                            '1 Room - 2 Adults',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 16,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                // Material(
+                //   color: Colors.transparent,
+                //   child: InkWell(
+                //     focusColor: Colors.transparent,
+                //     highlightColor: Colors.transparent,
+                //     hoverColor: Colors.transparent,
+                //     splashColor: Colors.grey.withOpacity(0.2),
+                //     borderRadius: const BorderRadius.all(
+                //       Radius.circular(4.0),
+                //     ),
+                //     onTap: () {
+                //       FocusScope.of(context).requestFocus(FocusNode());
+                //     },
+                //     child: Padding(
+                //       padding: const EdgeInsets.only(
+                //           left: 8, right: 8, top: 4, bottom: 4),
+                //       child: Column(
+                //         mainAxisAlignment: MainAxisAlignment.center,
+                //         crossAxisAlignment: CrossAxisAlignment.start,
+                //         children: <Widget>[
+                //           Text(
+                //             'Number of Rooms',
+                //             style: TextStyle(
+                //                 fontWeight: FontWeight.w100,
+                //                 fontSize: 16,
+                //                 color: Colors.grey.withOpacity(0.8)),
+                //           ),
+                //           const SizedBox(
+                //             height: 8,
+                //           ),
+                //           Text(
+                //             '1 Room - 2 Adults',
+                //             style: TextStyle(
+                //               fontWeight: FontWeight.w100,
+                //               fontSize: 16,
+                //             ),
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -360,26 +359,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
 
   Widget getFilterBarUI() {
     return Stack(
-      children: <Widget>[
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Container(
-            height: 24,
-            decoration: BoxDecoration(
-              color: HotelAppTheme.buildLightTheme().backgroundColor,
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    offset: const Offset(0, -2),
-                    blurRadius: 8.0),
-              ],
-            ),
-          ),
-        ),
+      children: <Widget>[    
         Container(
-          color: HotelAppTheme.buildLightTheme().backgroundColor,
+          color: HotelAppTheme.buildLightTheme().primaryColor.withOpacity(0.1),
           child: Padding(
             padding:
                 const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
@@ -442,14 +424,6 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
             ),
           ),
         ),
-        const Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Divider(
-            height: 1,
-          ),
-        )
       ],
     );
   }
