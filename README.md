@@ -1,6 +1,6 @@
 # Hotel App
 
-Allow you to book a nearby hotel. Created in React Native
+Allow you to book a nearby hotel. Created using Flutter
 
 ## 🧬 Samples
 
