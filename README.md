@@ -2,6 +2,11 @@
 
 Allow you to book a nearby hotel. Created using Flutter
 
+## 👨‍💻 Stack
+
+- Flutter
+
+
 ## 🧬 Samples
 
 | Home Screen | Details Screen | Cart Screen |
