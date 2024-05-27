@@ -18,8 +18,6 @@ class HotelDetailScreen extends StatefulWidget {
 }
 
 class _HotelDetailScreenState extends State<HotelDetailScreen> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -272,7 +270,6 @@ class HotelDetailTitle extends StatelessWidget {
   }
 }
 
-
 class ReserveDate extends StatefulWidget {
   const ReserveDate({super.key});
 
@@ -307,55 +304,53 @@ class _ReserveDateState extends State<ReserveDate> {
   @override
   Widget build(BuildContext context) {
     return Container(
-                              child: Material(
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  focusColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  splashColor: Colors.grey.withOpacity(0.2),
-                                  borderRadius: const BorderRadius.all(
-                                    Radius.circular(4.0),
-                                  ),
-                                  onTap: () {
-                                    FocusScope.of(context)
-                                        .requestFocus(FocusNode());
-                                    // setState(() {
-                                    //   isDatePopupOpen = true;
-                                    // });
-                                    showDemoDialog(context: context);
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 8, right: 8, top: 4, bottom: 4),
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text(
-                                          'Choose date',
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w100,
-                                              fontSize: 16,
-                                              color:
-                                                  Colors.grey.withOpacity(0.8)),
-                                        ),
-                                        const SizedBox(
-                                          height: 8,
-                                        ),
-                                        Text(
-                                          '${DateFormat("dd, MMM").format(startDate)} - ${DateFormat("dd, MMM").format(endDate)}',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w100,
-                                            fontSize: 16,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
+      margin: EdgeInsets.only(top: 20, bottom: 10),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          focusColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+          splashColor: Colors.grey.withOpacity(0.2),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(4.0),
+          ),
+          onTap: () {
+            FocusScope.of(context).requestFocus(FocusNode());
+            // setState(() {
+            //   isDatePopupOpen = true;
+            // });
+            showDemoDialog(context: context);
+          },
+          child: Padding(
+            padding:
+                const EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'Choose date',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w100,
+                      fontSize: 16,
+                      color: Colors.grey.withOpacity(0.8)),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Text(
+                  '${DateFormat("dd, MMM").format(startDate)} - ${DateFormat("dd, MMM").format(endDate)}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w100,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
