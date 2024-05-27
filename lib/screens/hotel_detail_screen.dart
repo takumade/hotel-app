@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hotel_app/model/hotel_list_data.dart';
-
+import 'package:hotel_app/widgets/home/calendar_popup_view.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
+import 'package:intl/intl.dart';
 import '../themes/hotel_app_theme.dart';
 
 class HotelDetailScreen extends StatefulWidget {
@@ -17,6 +18,8 @@ class HotelDetailScreen extends StatefulWidget {
 }
 
 class _HotelDetailScreenState extends State<HotelDetailScreen> {
+  
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -124,17 +127,23 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600))),
                             FacilitiesChip(),
+                            ReserveDate(),
                             Center(
                               child: Container(
-                                  margin: EdgeInsets.only(top:20),
+                                  margin: EdgeInsets.only(top: 20),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
                                     children: [
                                       ElevatedButton.icon(
                                           onPressed: () {},
-                                          icon: Icon(Icons.add_shopping_cart_sharp),
+                                          icon: Icon(
+                                              Icons.add_shopping_cart_sharp),
                                           label: Text("Reserve")),
-                                          TextButton.icon(onPressed: (){}, icon: Icon(Icons.favorite), label: Text("Add to Favorites"))
+                                      TextButton.icon(
+                                          onPressed: () {},
+                                          icon: Icon(Icons.favorite),
+                                          label: Text("Add to Favorites"))
                                     ],
                                   )),
                             )
@@ -168,13 +177,7 @@ class FacilitiesChip extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 10),
       child: Wrap(
-        children: [
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility(),
-          Facility()
-        ],
+        children: [Facility(), Facility(), Facility(), Facility(), Facility()],
       ),
     );
   }
@@ -266,5 +269,93 @@ class HotelDetailTitle extends StatelessWidget {
             )
           ],
         ));
+  }
+}
+
+
+class ReserveDate extends StatefulWidget {
+  const ReserveDate({super.key});
+
+  @override
+  State<ReserveDate> createState() => _ReserveDateState();
+}
+
+class _ReserveDateState extends State<ReserveDate> {
+  DateTime startDate = DateTime.now();
+  DateTime endDate = DateTime.now().add(const Duration(days: 5));
+
+  void showDemoDialog({BuildContext? context}) {
+    showDialog<dynamic>(
+      context: context!,
+      builder: (BuildContext context) => CalendarPopupView(
+        barrierDismissible: true,
+        minimumDate: DateTime.now(),
+        //  maximumDate: DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day + 10),
+        initialEndDate: endDate,
+        initialStartDate: startDate,
+        onApplyClick: (DateTime startData, DateTime endData) {
+          setState(() {
+            startDate = startData;
+            endDate = endData;
+          });
+        },
+        onCancelClick: () {},
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+                              child: Material(
+                                color: Colors.transparent,
+                                child: InkWell(
+                                  focusColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  splashColor: Colors.grey.withOpacity(0.2),
+                                  borderRadius: const BorderRadius.all(
+                                    Radius.circular(4.0),
+                                  ),
+                                  onTap: () {
+                                    FocusScope.of(context)
+                                        .requestFocus(FocusNode());
+                                    // setState(() {
+                                    //   isDatePopupOpen = true;
+                                    // });
+                                    showDemoDialog(context: context);
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 8, right: 8, top: 4, bottom: 4),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Text(
+                                          'Choose date',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w100,
+                                              fontSize: 16,
+                                              color:
+                                                  Colors.grey.withOpacity(0.8)),
+                                        ),
+                                        const SizedBox(
+                                          height: 8,
+                                        ),
+                                        Text(
+                                          '${DateFormat("dd, MMM").format(startDate)} - ${DateFormat("dd, MMM").format(endDate)}',
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w100,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            );
   }
 }
