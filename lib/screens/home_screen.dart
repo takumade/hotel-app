@@ -361,7 +361,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     return Stack(
       children: <Widget>[    
         Container(
-          color: HotelAppTheme.buildLightTheme().primaryColor.withOpacity(0.1),
+          color: HotelAppTheme.buildLightTheme().primaryColor,
           child: Padding(
             padding:
                 const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 4),
@@ -375,6 +375,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                       style: TextStyle(
                         fontWeight: FontWeight.w100,
                         fontSize: 16,
+                        color: HotelAppTheme.buildLightTheme().canvasColor
                       ),
                     ),
                   ),
@@ -407,13 +408,13 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                             style: TextStyle(
                               fontWeight: FontWeight.w100,
                               fontSize: 16,
+                               color: HotelAppTheme.buildLightTheme().canvasColor
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Icon(Icons.sort,
-                                color: HotelAppTheme.buildLightTheme()
-                                    .primaryColor),
+                                 color: HotelAppTheme.buildLightTheme().canvasColor),
                           ),
                         ],
                       ),
