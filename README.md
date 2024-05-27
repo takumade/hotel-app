@@ -4,9 +4,9 @@ Allow you to book a nearby hotel. Created in React Native
 
 ## 🧬 Samples
 
-![](./mockups/m1.png)
-![](./mockups/m2.png)
-![](./mockups/m3.png)
+![Home Screen](./mockups/m1.png)
+![Details Screen](./mockups/m2.png)
+![Cart Screen](./mockups/m3.png)
 
 ## 💪🏼 Getting Started
 
