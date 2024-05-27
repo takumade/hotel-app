@@ -126,10 +126,17 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                             FacilitiesChip(),
                             Center(
                               child: Container(
-                                  child: ElevatedButton.icon(
-                                      onPressed: () {},
-                                      icon: Icon(Icons.add_shopping_cart_sharp),
-                                      label: Text("Reserve"))),
+                                  margin: EdgeInsets.only(top:20),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      ElevatedButton.icon(
+                                          onPressed: () {},
+                                          icon: Icon(Icons.add_shopping_cart_sharp),
+                                          label: Text("Reserve")),
+                                          TextButton.icon(onPressed: (){}, icon: Icon(Icons.favorite), label: Text("Add to Favorites"))
+                                    ],
+                                  )),
                             )
                           ],
                         ),
