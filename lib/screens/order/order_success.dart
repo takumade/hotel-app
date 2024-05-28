@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hotel_app/screens/order/order_success.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 import 'package:hotel_app/widgets/general/custom_titles.dart';
 
-class CheckoutScreen extends StatefulWidget {
-  const CheckoutScreen({super.key});
+class OrderSuccessScreen extends StatefulWidget {
+  const OrderSuccessScreen({super.key});
 
   @override
-  State<CheckoutScreen> createState() => _CheckoutScreenState();
+  State<OrderSuccessScreen> createState() => _OrderSuccessScreenState();
 }
 
-class _CheckoutScreenState extends State<CheckoutScreen> {
+class _OrderSuccessScreenState extends State<OrderSuccessScreen> {
   String selectedPaymentMethod = "paynow";
 
   @override
@@ -151,16 +150,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           label: Text("Cancel")),
                           SizedBox(width: 10,),
                       ElevatedButton.icon(
-                          onPressed: () {
-
-                             Navigator.push<dynamic>(
-                                    context,
-                                    MaterialPageRoute<dynamic>(
-                                      builder: (BuildContext context) =>
-                                          OrderSuccessScreen(),
-                                    ),
-                                  );
-                          },
+                          onPressed: () {},
                           icon: Icon(Icons.attach_money),
                           label: Text("Pay    ")),
                     ],
