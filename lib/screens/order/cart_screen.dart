@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/screens/order/checkout_screen.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 
@@ -60,7 +61,16 @@ class _CartScreenState extends State<CartScreen> {
                       padding: EdgeInsets.only(
                           top: 12,  bottom: 30),
                       child: ElevatedButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+
+                             Navigator.push<dynamic>(
+                                    context,
+                                    MaterialPageRoute<dynamic>(
+                                      builder: (BuildContext context) =>
+                                          CheckoutScreen(),
+                                    ),
+                                  );
+                          },
                           icon: Icon(Icons.shopping_cart),
                           label: Text("Checkout")))
             ]),
