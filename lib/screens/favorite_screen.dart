@@ -49,6 +49,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
             backgroundColor: HotelAppTheme.buildLightTheme().canvasColor,
             body: Column(children: <Widget>[
               CustomAppBar(title: "Favorites"),
+              SizedBox(height: 12,),
               Expanded(
                           child: ListView.builder(
                             itemCount: hotelList.length,
