@@ -49,36 +49,76 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             fontSize: 30),
                       ),
                   ),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
+
+
+                  ListTile(
+                    leading: Icon(Icons.attach_money_outlined, color: Colors.black87.withOpacity(0.5)),
+                    title: Text("Total",
+                            
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            )),
+                    subtitle: Text(
+                              "Plus Tax (15%)",
+                             
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                    trailing: Text(
+                        "\$10",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: HotelAppTheme.buildLightTheme().primaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                  ),
+
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Text("Payment Methods",
+                            
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            )),
+                  ),
+
+
+                  ListTile(
+                    leading: Icon(Icons.credit_card, color: Colors.black87.withOpacity(0.5)),
+                    title: Text("Paynow",
+                            
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            )),
+                    subtitle: Text(
+                              "Ecocash, Telecel and OneMoney supported",
+                             
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                    trailing: Text(
+                        "\$10",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: HotelAppTheme.buildLightTheme().primaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                  ),
+
+
+
               
                 ],
               )),
