@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
+import 'package:hotel_app/widgets/general/custom_titles.dart';
 
 class CheckoutScreen extends StatefulWidget {
   const CheckoutScreen({super.key});
@@ -77,17 +78,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             fontSize: 30),
                       ),
                   ),
+            
 
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Text("Payment Methods",
-                            
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            )),
-                  ),
+                  CustomScreenTitle(title: "Payment Methods"),
 
 
                   ListTile(
