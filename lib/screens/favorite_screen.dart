@@ -55,14 +55,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               
                 ],
               )),
-                  Container(
-                    width: 220,
-                      padding: EdgeInsets.only(
-                          top: 12,  bottom: 30),
-                      child: ElevatedButton.icon(
-                          onPressed: () {},
-                          icon: Icon(Icons.shopping_cart),
-                          label: Text("Checkout")))
             ]),
           ),
         ));
