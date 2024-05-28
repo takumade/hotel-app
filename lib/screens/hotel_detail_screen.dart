@@ -1,10 +1,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotel_app/model/hotel_list_data.dart';
+import 'package:hotel_app/widgets/general/custom_titles.dart';
 import 'package:hotel_app/widgets/home/calendar_popup_view.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 import 'package:intl/intl.dart';
 import '../themes/hotel_app_theme.dart';
+
 
 class HotelDetailScreen extends StatefulWidget {
   final HotelListData hotel;
@@ -107,22 +109,14 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                 ],
                               ),
                             ),
-                            Container(
-                                margin: EdgeInsets.only(top: 20),
-                                child: Text("About",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600))),
+                            CustomScreenTitle(title: "About"),
                             Container(
                                 margin: EdgeInsets.only(top: 5),
                                 child: Text(
                                     "Positioned is a widget that comes built-in with flutter SDK. Positioned does exactly what it sounds like, which is it arbitrarily positioned widgets on top of each other. It is usually used to position child widgets in Stack widget or similar. It only works for")),
-                            Container(
-                                margin: EdgeInsets.only(top: 25),
-                                child: Text("Facilities",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.w600))),
+          
+
+                                        CustomScreenTitle(title: "Facilities"),
                             FacilitiesChip(),
                             ReserveDate(),
                             Center(
@@ -163,6 +157,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
     );
   }
 }
+
 
 class FacilitiesChip extends StatelessWidget {
   const FacilitiesChip({
