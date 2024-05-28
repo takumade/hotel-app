@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
+import 'package:hotel_app/widgets/favorite/fav_hotel_list_view.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 
 import 'package:hotel_app/screens/hotel_detail_screen.dart';
@@ -66,7 +67,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
                                               (1 / count) * index, 1.0,
                                               curve: Curves.fastOutSlowIn)));
                               animationController?.forward();
-                              return HotelListView(
+                              return FavoriteHotelListView(
                                 callback: (HotelListData hotel) {
                                   Navigator.push<dynamic>(
                                     context,
