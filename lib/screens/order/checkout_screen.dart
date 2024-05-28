@@ -11,6 +11,8 @@ class CheckoutScreen extends StatefulWidget {
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
+  String selectedOption = "paynow";
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -21,113 +23,130 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             body: Column(children: <Widget>[
               CustomAppBar(title: "Checkout"),
               Expanded(
-                  child: ListView(
-                children: [
-
-                  ListTile(
-                    leading: Icon(Icons.hotel_rounded, color: Colors.black87.withOpacity(0.5)),
-                    title: Text("Meikles Hotel",
-                            
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            )),
-                    subtitle: Text(
-                              "24 Feb to 24 May (2024) x 3",
-                             
+                  child: Container(
+                    padding: const EdgeInsets.only(
+                  left: 24, right: 24,  bottom: 16),
+                    child: ListView(
+                                    children: [
+                    
+                    ListTile(
+                      leading: Icon(Icons.hotel_rounded, color: Colors.black87.withOpacity(0.5)),
+                      title: Text("Meikles Hotel",
+                              
                               style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              )),
+                      subtitle: Text(
+                                "24 Feb to 24 May (2024) x 3",
+                               
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
-                            ),
-                    trailing: Text(
-                        "\$55",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: HotelAppTheme.buildLightTheme().primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
-                      ),
-                  ),
-                  Divider(color: Colors.black87.withOpacity(0.2)),
-
-
-                  ListTile(
-                    leading: Icon(Icons.attach_money_outlined, color: Colors.black87.withOpacity(0.5)),
-                    title: Text("Total",
-                            
-                            style: const TextStyle(
-                              color: Colors.black,
+                      trailing: Text(
+                          "\$55",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: HotelAppTheme.buildLightTheme().primaryColor,
                               fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            )),
-                    subtitle: Text(
-                              "Plus Tax (15%)",
-                             
+                              fontSize: 25),
+                        ),
+                    ),
+                    Divider(color: Colors.black87.withOpacity(0.2)),
+                    
+                    
+                    ListTile(
+                      leading: Icon(Icons.attach_money_outlined, color: Colors.black87.withOpacity(0.5)),
+                      title: Text("Total",
+                              
                               style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              )),
+                      subtitle: Text(
+                                "Plus Tax (15%)",
+                               
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
-                            ),
-                    trailing: Text(
-                        "\$10",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: HotelAppTheme.buildLightTheme().primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 25),
-                      ),
-                  ),
-            
-
-                  CustomScreenTitle(title: "Payment Methods"),
-
-
-                  ListTile(
-                    leading: Radio(value: "paynow", groupValue: "paynow", onChanged: (value){},),
-                    title: Text("Paynow",
-                            
-                            style: const TextStyle(
-                              color: Colors.black,
+                      trailing: Text(
+                          "\$10",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: HotelAppTheme.buildLightTheme().primaryColor,
                               fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            )),
-                    subtitle: Text(
-                              "Ecocash, Telecel and OneMoney supported",
-                             
+                              fontSize: 25),
+                        ),
+                    ),
+                                
+                    
+                    CustomScreenTitle(title: "Payment Methods"),
+                    
+                    
+                    ListTile(
+                      leading: Radio<String>(value: "paynow", groupValue: selectedOption, 
+                      onChanged: (value) {
+                   setState(() {
+                    selectedOption = value.toString();
+                    print("Button value: $value");
+                    });
+                  },),
+                      title: Text("Paynow",
+                              
                               style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              )),
+                      subtitle: Text(
+                                "Ecocash, Telecel and OneMoney supported",
+                               
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
-                            ),
-                    trailing: Icon(Icons.credit_card, color: Colors.black87.withOpacity(0.5))
-                  ),
-                     ListTile(
-                    leading: Radio(value: "stripe", groupValue: "stripe", onChanged: (value){},),
-                    title: Text("Stripe",
-                            
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            )),
-                    subtitle: Text(
-                              "VISA and Mastercard supported",
-                             
+                      trailing: Icon(Icons.credit_card, color: Colors.black87.withOpacity(0.5))
+                    ),
+                       ListTile(
+                      leading: Radio<String>(value: "stripe", groupValue: selectedOption, 
+                      
+                      onChanged: (value) {
+                   setState(() {
+                    selectedOption = value.toString();
+                    print("Button value: $value");
+                    });
+                  },),
+                      title: Text("Stripe",
+                              
                               style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              )),
+                      subtitle: Text(
+                                "VISA and Mastercard supported",
+                               
+                                style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ),
-                            ),
-                    trailing: Icon(Icons.credit_card, color: Colors.black87.withOpacity(0.5))
-                  ),
-
-
-
-              
-                ],
-              )),
+                      trailing: Icon(Icons.credit_card, color: Colors.black87.withOpacity(0.5))
+                    ),
+                    
+                    
+                    
+                                  
+                                    ],
+                                  ),
+                  )),
                   Container(
                     width: 220,
                       padding: EdgeInsets.only(
@@ -139,146 +158,5 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             ]),
           ),
         ));
-  }
-}
-
-class CartItem extends StatelessWidget {
-  final String text;
-  final String imageUrl;
-  final String subtitle;
-  final Function() onPressed;
-
-  const CartItem(
-      {required this.text,
-      required this.imageUrl,
-      required this.subtitle,
-      required this.onPressed,
-      Key? key})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 160,
-        padding: const EdgeInsets.all(12.0),
-        margin: EdgeInsets.only(top: 12, left: 16, right: 16.0),
-        decoration: BoxDecoration(
-          color: HotelAppTheme.buildLightTheme().colorScheme.background,
-          borderRadius: BorderRadius.all(Radius.circular(18)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            ),
-          ],
-        ),
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  // ClipRRect(
-                  //     borderRadius: BorderRadius.circular(9.0),
-                  //     child: Image.network(
-                  //         "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                  //         height: 59,
-                  //         fit: BoxFit.cover)),
-
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(text,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Icon(Icons.date_range,
-                                color: Colors.black87.withOpacity(0.5)),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              subtitle,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.people,
-                              color: Colors.black87.withOpacity(0.5),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "3 people",
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        "\$55",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: HotelAppTheme.buildLightTheme().primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                      ),
-                      Text(
-                        "/night",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              TextButton.icon(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.red)),
-                  icon: Icon(Icons.delete_outline_rounded),
-                  label: Text("Remove"))
-            ],
-          ),
-        ),
-      ),
-    );
   }
 }
