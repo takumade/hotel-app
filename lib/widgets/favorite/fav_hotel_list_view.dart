@@ -223,7 +223,7 @@ class FavoriteHotelListView extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Icon(
-                                  Icons.favorite_border,
+                                  Icons.favorite,
                                   color: HotelAppTheme.buildLightTheme()
                                       .primaryColor,
                                 ),
