@@ -18,10 +18,37 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           child: Scaffold(
             backgroundColor: HotelAppTheme.buildLightTheme().canvasColor,
             body: Column(children: <Widget>[
-              CustomAppBar(title: "Cart"),
+              CustomAppBar(title: "Checkout"),
               Expanded(
                   child: ListView(
                 children: [
+
+                  ListTile(
+                    leading: Icon(Icons.hotel_rounded, color: Colors.black87.withOpacity(0.5)),
+                    title: Text("Meikles Hotel",
+                            
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            )),
+                    subtitle: Text(
+                              "24 Feb to 24 May (2024) x 3",
+                             
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                    trailing: Text(
+                        "\$55",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: HotelAppTheme.buildLightTheme().primaryColor,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 30),
+                      ),
+                  ),
                   CartItem(
                       text: "Meikles Hotel",
                       imageUrl: "imageUrl",
