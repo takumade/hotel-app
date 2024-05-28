@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 
+import 'package:hotel_app/screens/hotel_detail_screen.dart';
+
+import 'package:hotel_app/widgets/home/hotel_list_view.dart';
+import 'package:hotel_app/model/hotel_list_data.dart';
+import 'package:hotel_app/model/hotel_list_data.dart';
+
+
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
 
@@ -9,7 +16,30 @@ class FavoriteScreen extends StatefulWidget {
   State<FavoriteScreen> createState() => _FavoriteScreenState();
 }
 
-class _FavoriteScreenState extends State<FavoriteScreen> {
+class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStateMixin {
+
+   AnimationController? animationController;
+  List<HotelListData> hotelList = HotelListData.hotelList;
+
+   @override
+  void initState() {
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    super.initState();
+  }
+
+  Future<bool> getData() async {
+    await Future<dynamic>.delayed(const Duration(milliseconds: 200));
+    return true;
+  }
+
+  @override
+  void dispose() {
+    animationController?.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -18,43 +48,40 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
           child: Scaffold(
             backgroundColor: HotelAppTheme.buildLightTheme().canvasColor,
             body: Column(children: <Widget>[
-              CustomAppBar(title: "Favorite"),
+              CustomAppBar(title: "Favorites"),
               Expanded(
-                  child: ListView(
-                children: [
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-              
-                ],
-              )),
+                          child: ListView.builder(
+                            itemCount: hotelList.length,
+                            padding: const EdgeInsets.only(top: 8),
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (BuildContext context, int index) {
+                              final int count =
+                                  hotelList.length > 10 ? 10 : hotelList.length;
+                              final Animation<double> animation =
+                                  Tween<double>(begin: 0.0, end: 1.0).animate(
+                                      CurvedAnimation(
+                                          parent: animationController!,
+                                          curve: Interval(
+                                              (1 / count) * index, 1.0,
+                                              curve: Curves.fastOutSlowIn)));
+                              animationController?.forward();
+                              return HotelListView(
+                                callback: (HotelListData hotel) {
+                                  Navigator.push<dynamic>(
+                                    context,
+                                    MaterialPageRoute<dynamic>(
+                                      builder: (BuildContext context) =>
+                                          HotelDetailScreen(hotel: hotel),
+                                    ),
+                                  );
+                                },
+                                hotelData: hotelList[index],
+                                animation: animation,
+                                animationController: animationController!,
+                              );
+                            },
+                          ),
+                        ),
             ]),
           ),
         ));
