@@ -47,7 +47,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         style: TextStyle(
                             color: HotelAppTheme.buildLightTheme().primaryColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 30),
+                            fontSize: 25),
                       ),
                   ),
                   Divider(color: Colors.black87.withOpacity(0.2)),
