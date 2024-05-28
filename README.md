@@ -15,7 +15,7 @@ Allow you to book a nearby hotel. Created using Flutter
 
 | Favorites Screen | Checkout Screen | Order Success Screen |
 |------------------|-----------------|---------------------|
-
+| ![Favorites Screen](./mockups/m4.png) | ![Checkout Screen](./mockups/m5.png) | ![Order SUccess Screen](./mockups/m6.png)     
 
 
 
