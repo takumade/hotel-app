@@ -140,8 +140,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                           top: 12,  bottom: 30),
                       child: ElevatedButton.icon(
                           onPressed: () {},
-                          icon: Icon(Icons.shopping_cart),
-                          label: Text("Checkout")))
+                          icon: Icon(Icons.attach_money),
+                          label: Text("Pay")))
             ]),
           ),
         ));
