@@ -91,7 +91,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
 
                   ListTile(
-                    leading: Icon(Icons.credit_card, color: Colors.black87.withOpacity(0.5)),
+                    leading: Radio(value: "paynow", groupValue: "paynow", onChanged: (value){},),
                     title: Text("Paynow",
                             
                             style: const TextStyle(
@@ -107,14 +107,26 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                                 fontWeight: FontWeight.normal,
                               ),
                             ),
-                    trailing: Text(
-                        "\$10",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: HotelAppTheme.buildLightTheme().primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                      ),
+                    trailing: Icon(Icons.credit_card, color: Colors.black87.withOpacity(0.5))
+                  ),
+                     ListTile(
+                    leading: Radio(value: "stripe", groupValue: "stripe", onChanged: (value){},),
+                    title: Text("Stripe",
+                            
+                            style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            )),
+                    subtitle: Text(
+                              "VISA and Mastercard supported",
+                             
+                              style: const TextStyle(
+                                color: Colors.grey,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            ),
+                    trailing: Icon(Icons.credit_card, color: Colors.black87.withOpacity(0.5))
                   ),
 
 
