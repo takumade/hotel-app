@@ -140,12 +140,21 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 ),
               ),
               Container(
-                  width: 220,
+                  width: 240,
                   padding: EdgeInsets.only(top: 12, bottom: 30),
-                  child: ElevatedButton.icon(
-                      onPressed: () {},
-                      icon: Icon(Icons.attach_money),
-                      label: Text("Pay")))
+                  child: Row(
+                    children: [
+                      TextButton.icon(
+                          onPressed: () {},
+                          icon: Icon(Icons.money_off_csred),
+                          label: Text("Cancel")),
+                          SizedBox(width: 10,),
+                      ElevatedButton.icon(
+                          onPressed: () {},
+                          icon: Icon(Icons.attach_money),
+                          label: Text("Pay    ")),
+                    ],
+                  ))
             ]),
           ),
         ));
