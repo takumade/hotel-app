@@ -11,7 +11,7 @@ class CheckoutScreen extends StatefulWidget {
 }
 
 class _CheckoutScreenState extends State<CheckoutScreen> {
-  String selectedOption = "paynow";
+  String selectedPaymentMethod = "paynow";
 
   @override
   Widget build(BuildContext context) {
@@ -82,10 +82,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ListTile(
                         leading: Radio<String>(
                           value: "paynow",
-                          groupValue: selectedOption,
+                          groupValue: selectedPaymentMethod,
                           onChanged: (value) {
                             setState(() {
-                              selectedOption = value.toString();
+                              selectedPaymentMethod = value.toString();
                               print("Button value: $value");
                             });
                           },
@@ -108,10 +108,10 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     ListTile(
                         leading: Radio<String>(
                           value: "stripe",
-                          groupValue: selectedOption,
+                          groupValue: selectedPaymentMethod,
                           onChanged: (value) {
                             setState(() {
-                              selectedOption = value.toString();
+                              selectedPaymentMethod = value.toString();
                               print("Button value: $value");
                             });
                           },
