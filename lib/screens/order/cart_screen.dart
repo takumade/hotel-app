@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 
