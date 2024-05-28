@@ -50,6 +50,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                             fontSize: 30),
                       ),
                   ),
+                  Divider(color: Colors.black87.withOpacity(0.2)),
 
 
                   ListTile(
@@ -75,7 +76,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                         style: TextStyle(
                             color: HotelAppTheme.buildLightTheme().primaryColor,
                             fontWeight: FontWeight.bold,
-                            fontSize: 30),
+                            fontSize: 25),
                       ),
                   ),
             
