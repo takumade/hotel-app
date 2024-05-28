@@ -27,6 +27,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 padding: const EdgeInsets.only(left: 24, right: 24, bottom: 16),
                 child: ListView(
                   children: [
+
+                    CustomScreenTitle(title: "Order"),
                     ListTile(
                       leading: Icon(Icons.hotel_rounded,
                           color: Colors.black87.withOpacity(0.5)),
