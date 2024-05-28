@@ -106,29 +106,29 @@ class FavoriteHotelListView extends StatelessWidget {
                                                 
                                               ],
                                             ),
-                                            Row(
-                                              children: [
-                                                Icon(
-                                                  FontAwesomeIcons.locationDot,
-                                                  size: 12,
-                                                  color: HotelAppTheme
-                                                          .buildLightTheme()
-                                                      .primaryColor,
-                                                ),
-                                                SizedBox( width: 5,),
-                                                Expanded(
-                                                  child: Text(
-                                                    '${hotelData!.dist.toStringAsFixed(1)} km to city',
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    style: TextStyle(
-                                                        fontSize: 14,
-                                                        color: Colors.grey
-                                                            .withOpacity(0.8)),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
+                                            // Row(
+                                            //   children: [
+                                            //     Icon(
+                                            //       FontAwesomeIcons.locationDot,
+                                            //       size: 12,
+                                            //       color: HotelAppTheme
+                                            //               .buildLightTheme()
+                                            //           .primaryColor,
+                                            //     ),
+                                            //     SizedBox( width: 5,),
+                                            //     Expanded(
+                                            //       child: Text(
+                                            //         '${hotelData!.dist.toStringAsFixed(1)} km to city',
+                                            //         overflow:
+                                            //             TextOverflow.ellipsis,
+                                            //         style: TextStyle(
+                                            //             fontSize: 14,
+                                            //             color: Colors.grey
+                                            //                 .withOpacity(0.8)),
+                                            //       ),
+                                            //     ),
+                                            //   ],
+                                            // ),
                                             Padding(
                                               padding:
                                                   const EdgeInsets.only(top: 4),
