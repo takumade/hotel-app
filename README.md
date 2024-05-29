@@ -23,20 +23,20 @@ Allow you to book a nearby hotel. Created using Flutter
 
 ## 💪🏼 Getting Started
 
-# Clone the project and cd into it
+### Clone the project and cd into it
 
 ```bash
 git clone https://github.com/takumade/hotel-app
 cd ./hotel-app
 ```
 
-# Install dependencies
+### Install dependencies
 
 ```bash
 flutter pub get
 ```
 
-# Run
+### Run
 
 ```bash
 flutter run
