@@ -99,6 +99,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "0.19.0"
+  jiffy:
+    dependency: "direct main"
+    description:
+      name: jiffy
+      sha256: "3497caaa36d36a29033e66803c9739ce6bccbc7e241ca46070f76ee9e6f6eb0c"
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "6.3.1"
   leak_tracker:
     dependency: transitive
     description:
