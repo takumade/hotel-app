@@ -124,21 +124,18 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                             HotelDetailTitle(widget: widget)))
                               ],
                             ),
+                            CustomScreenTitle(title: "Address"),
                             Container(
-                              margin: EdgeInsets.only(top: 20),
-                              child: Row(
-                                children: [
-                                  Icon(Icons.hotel_rounded,  color: Colors.grey[600],),
-                                  Container(
-                                      margin: EdgeInsets.only(left: 10),
-                                      child: Text(widget.hotel.address))
-                                ],
-                              ),
+                              width: 300,
+                              margin: EdgeInsets.only(top: 5),
+                              child: Text(widget.hotel.address)
                             ),
                             CustomScreenTitle(title: "About"),
                             Container(
                                 margin: EdgeInsets.only(top: 5),
-                                child: Text(widget.hotel.about)),
+                                child: Text(
+                                 
+                                  widget.hotel.about)),
           
 
                                         CustomScreenTitle(title: "Facilities"),
