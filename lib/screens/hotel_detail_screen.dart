@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:hotel_app/model/cart.dart';
 import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/widgets/general/custom_titles.dart';
@@ -105,20 +106,18 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                   Icon(Icons.hotel_rounded),
                                   Container(
                                       margin: EdgeInsets.only(left: 10),
-                                      child: Text(
-                                          '119 Josiah Tongogara Street, \nHarare, Zimbabwe'))
+                                      child: Text(widget.hotel.address))
                                 ],
                               ),
                             ),
                             CustomScreenTitle(title: "About"),
                             Container(
                                 margin: EdgeInsets.only(top: 5),
-                                child: Text(
-                                    "Positioned is a widget that comes built-in with flutter SDK. Positioned does exactly what it sounds like, which is it arbitrarily positioned widgets on top of each other. It is usually used to position child widgets in Stack widget or similar. It only works for")),
+                                child: Text(widget.hotel.about)),
           
 
                                         CustomScreenTitle(title: "Facilities"),
-                            FacilitiesChip(),
+                            FacilitiesChip(facilities: widget.hotel.facilities),
                             ReserveDate(),
                             Center(
                               child: Container(
@@ -161,24 +160,39 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
 
 
 class FacilitiesChip extends StatelessWidget {
+  final List<String> facilities;
   const FacilitiesChip({
-    super.key,
+    super.key, required this.facilities,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 10),
-      child: Wrap(
-        children: [Facility(), Facility(), Facility(), Facility(), Facility()],
-      ),
+      child: Column(
+        children: [
+          SizedBox(
+            // width: MediaQuery.of(context).size.width,
+            height: 50,
+            child: ListView.builder(
+              itemCount: facilities.length,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                
+                return Facility(facility: facilities[index]);
+              },
+            ),
+          ),
+        ],
+      )
     );
   }
 }
 
 class Facility extends StatelessWidget {
+  final String facility;
   const Facility({
-    super.key,
+    super.key, required this.facility,
   });
 
   @override
@@ -190,7 +204,7 @@ class Facility extends StatelessWidget {
           print("selected");
         },
         label: Text(
-          "Shower",
+          facility,
           style: TextStyle(
               fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87),
         ),
