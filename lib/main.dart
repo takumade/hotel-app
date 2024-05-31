@@ -1,7 +1,8 @@
 
+import 'package:hotel_app/model/cart.dart';
 import 'package:hotel_app/themes/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'navigation/main_navigation.dart';
 
 void main() async {
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
+    return ChangeNotifierProvider(create: (context) =>  Cart(),
+      builder: (context, child) =>MaterialApp(
       title: 'Hotel App',
       debugShowCheckedModeBanner: true,
       theme: ThemeData(
@@ -21,7 +23,8 @@ class MyApp extends StatelessWidget {
         platform: TargetPlatform.iOS,
       ),
       home: NavigationHomeScreen(),
-    );
+    )
+,);
   }
 }
 
