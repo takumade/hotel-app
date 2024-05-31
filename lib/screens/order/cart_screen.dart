@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/model/cart.dart';
+import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/screens/order/checkout_screen.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
+import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -11,6 +14,19 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+  void handleRemoveFromCart(Hotel hotel){
+      Provider.of<Cart>(context, listen: false).removeHotelFromCart(hotel);
+
+// alert the user
+    showDialog(context: context, builder: (context) => const AlertDialog(
+      title: Text("Reserving removed") ,
+      content: Text("Check your cart"),
+    ) );
+      
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -18,43 +34,22 @@ class _CartScreenState extends State<CartScreen> {
         child: Container(
           child: Scaffold(
             backgroundColor: HotelAppTheme.buildLightTheme().canvasColor,
-            body: Column(children: <Widget>[
+            body: Consumer<Cart>(builder:(context, value, child) => Column(children: <Widget>[
               CustomAppBar(title: "Cart"),
               Expanded(
-                  child: ListView(
-                children: [
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-                  CartItem(
-                      text: "Meikles Hotel",
-                      imageUrl: "imageUrl",
-                      subtitle: "24 Feb to 24 May (2024)",
-                      onPressed: () {}),
-              
-                ],
+                  child: ListView.builder(
+                    itemCount: value.getUserCart().length,
+                    itemBuilder: ((context, index) {
+                      Hotel hotel = value.getUserCart()[index];
+
+
+                      return CartItem(
+                      hotel: hotel,
+                      removeFromCart: handleRemoveFromCart,
+                      );
+
+                      
+                    }),
               )),
                   Container(
                     width: 220,
@@ -73,31 +68,25 @@ class _CartScreenState extends State<CartScreen> {
                           },
                           icon: Icon(Icons.shopping_cart),
                           label: Text("Checkout")))
-            ]),
+            ]))
           ),
         ));
   }
 }
 
 class CartItem extends StatelessWidget {
-  final String text;
-  final String imageUrl;
-  final String subtitle;
-  final Function() onPressed;
+  final Hotel hotel;
+  final Function(Hotel) removeFromCart;
 
   const CartItem(
-      {required this.text,
-      required this.imageUrl,
-      required this.subtitle,
-      required this.onPressed,
-      Key? key})
+      {
+      
+      Key? key, required this.hotel, required this.removeFromCart})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
+    return Container(
         width: MediaQuery.of(context).size.width,
         height: 160,
         padding: const EdgeInsets.all(12.0),
@@ -134,7 +123,7 @@ class CartItem extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(text,
+                        Text(hotel.titleTxt,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               color: Colors.black,
@@ -152,7 +141,7 @@ class CartItem extends StatelessWidget {
                               width: 10,
                             ),
                             Text(
-                              subtitle,
+                              "Meow",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.grey,
@@ -171,7 +160,7 @@ class CartItem extends StatelessWidget {
                               width: 10,
                             ),
                             Text(
-                              "3 people",
+                              (hotel.people ?? 3).toString() + " people",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.grey,
@@ -186,7 +175,7 @@ class CartItem extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "\$55",
+                        "\$" + hotel.perNight.toString(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: HotelAppTheme.buildLightTheme().primaryColor,
@@ -206,7 +195,7 @@ class CartItem extends StatelessWidget {
                 ],
               ),
               TextButton.icon(
-                  onPressed: () {},
+                  onPressed: () => removeFromCart(hotel),
                   style: ButtonStyle(
                       foregroundColor:
                           MaterialStateProperty.all<Color>(Colors.red)),
@@ -214,8 +203,7 @@ class CartItem extends StatelessWidget {
                   label: Text("Remove"))
             ],
           ),
-        ),
-      ),
+        )
     );
   }
 }
