@@ -69,6 +69,10 @@ class HotelListData extends ChangeNotifier {
     ),
   ];
 
+  List<HotelListData> getUserCart(){
+    return userCart;
+  }
+
 
   void addHotelToCart(HotelListData hotel){
     userCart.add(hotel);
