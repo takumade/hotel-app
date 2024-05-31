@@ -1,28 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/model/hotel.dart';
 
-class HotelListData extends ChangeNotifier {
-  HotelListData({
-    this.imagePath = '',
-    this.titleTxt = '',
-    this.subTxt = "",
-    this.dist = 1.8,
-    this.reviews = 80,
-    this.rating = 4.5,
-    this.perNight = 180,
-  });
+class Cart extends ChangeNotifier {
 
-  List<HotelListData> userCart = [];
 
-  String imagePath;
-  String titleTxt;
-  String subTxt;
-  double dist;
-  double rating;
-  int reviews;
-  int perNight;
+  List<Hotel> userCart = [];
 
-  static List<HotelListData> hotelList = <HotelListData>[
-    HotelListData(
+
+
+  static List<Hotel> hotelList = <Hotel>[
+    Hotel(
       imagePath: 'assets/hotel/hotel_1.png',
       titleTxt: 'Grand Royal Hotel',
       subTxt: 'Wembley, London',
@@ -31,7 +18,7 @@ class HotelListData extends ChangeNotifier {
       rating: 4.4,
       perNight: 180,
     ),
-    HotelListData(
+    Hotel(
       imagePath: 'assets/hotel/hotel_2.png',
       titleTxt: 'Queen Hotel',
       subTxt: 'Wembley, London',
@@ -40,7 +27,7 @@ class HotelListData extends ChangeNotifier {
       rating: 4.5,
       perNight: 200,
     ),
-    HotelListData(
+    Hotel(
       imagePath: 'assets/hotel/hotel_3.png',
       titleTxt: 'Grand Royal Hotel',
       subTxt: 'Wembley, London',
@@ -49,7 +36,7 @@ class HotelListData extends ChangeNotifier {
       rating: 4.0,
       perNight: 60,
     ),
-    HotelListData(
+    Hotel(
       imagePath: 'assets/hotel/hotel_4.png',
       titleTxt: 'Queen Hotel',
       subTxt: 'Wembley, London',
@@ -58,7 +45,7 @@ class HotelListData extends ChangeNotifier {
       rating: 4.4,
       perNight: 170,
     ),
-    HotelListData(
+    Hotel(
       imagePath: 'assets/hotel/hotel_5.png',
       titleTxt: 'Grand Royal Hotel',
       subTxt: 'Wembley, London',
@@ -69,16 +56,20 @@ class HotelListData extends ChangeNotifier {
     ),
   ];
 
-  List<HotelListData> getUserCart(){
+  List<Hotel> getUserCart(){
     return userCart;
   }
 
-  void addHotelToCart(HotelListData hotel){
+   List<Hotel> getHotels(){
+    return hotelList;
+  }
+
+  void addHotelToCart(Hotel hotel){
     userCart.add(hotel);
     notifyListeners();
   }
 
-  void removeHotelFromCart(HotelListData hotel){
+  void removeHotelFromCart(Hotel hotel){
     userCart.remove(hotel);
     notifyListeners();  
   }

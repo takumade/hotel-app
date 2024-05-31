@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/favorite/fav_hotel_list_view.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
@@ -6,8 +7,9 @@ import 'package:hotel_app/widgets/general/app_bar.dart';
 import 'package:hotel_app/screens/hotel_detail_screen.dart';
 
 import 'package:hotel_app/widgets/home/hotel_list_view.dart';
-import 'package:hotel_app/model/hotel_list_data.dart';
-import 'package:hotel_app/model/hotel_list_data.dart';
+import 'package:hotel_app/model/cart.dart';
+import 'package:hotel_app/model/cart.dart';
+import 'package:provider/provider.dart';
 
 
 class FavoriteScreen extends StatefulWidget {
@@ -20,12 +22,14 @@ class FavoriteScreen extends StatefulWidget {
 class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStateMixin {
 
    AnimationController? animationController;
-  List<HotelListData> hotelList = HotelListData.hotelList;
+  List<Hotel> hotelList = [];
 
    @override
   void initState() {
     animationController = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
+
+    hotelList = Provider.of<Cart>(context, listen: false).getHotels();
     super.initState();
   }
 
@@ -68,7 +72,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
                                               curve: Curves.fastOutSlowIn)));
                               animationController?.forward();
                               return FavoriteHotelListView(
-                                callback: (HotelListData hotel) {
+                                callback: (Hotel hotel) {
                                   Navigator.push<dynamic>(
                                     context,
                                     MaterialPageRoute<dynamic>(

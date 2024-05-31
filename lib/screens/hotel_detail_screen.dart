@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
-import 'package:hotel_app/model/hotel_list_data.dart';
+import 'package:hotel_app/model/cart.dart';
+import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/widgets/general/custom_titles.dart';
 import 'package:hotel_app/widgets/home/calendar_popup_view.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
@@ -9,7 +10,7 @@ import '../themes/hotel_app_theme.dart';
 
 
 class HotelDetailScreen extends StatefulWidget {
-  final HotelListData hotel;
+  final Hotel hotel;
   final ScrollController _hotelDetailScrollController = ScrollController();
 
   HotelDetailScreen({super.key, required this.hotel});

@@ -1,9 +1,10 @@
+import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../../model/hotel_list_data.dart';
+import '../../model/cart.dart';
 
 class HotelListView extends StatelessWidget {
   const HotelListView(
@@ -15,7 +16,7 @@ class HotelListView extends StatelessWidget {
       : super(key: key);
 
   final Function? callback;
-  final HotelListData? hotelData;
+  final Hotel? hotelData;
   final AnimationController? animationController;
   final Animation<double>? animation;
 
