@@ -4,6 +4,8 @@ import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/screens/order/checkout_screen.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
+import 'package:intl/intl.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:provider/provider.dart';
 
 class CartScreen extends StatefulWidget {
@@ -14,18 +16,17 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-
-  void handleRemoveFromCart(Hotel hotel){
-      Provider.of<Cart>(context, listen: false).removeHotelFromCart(hotel);
+  void handleRemoveFromCart(Hotel hotel) {
+    Provider.of<Cart>(context, listen: false).removeHotelFromCart(hotel);
 
 // alert the user
-    showDialog(context: context, builder: (context) => const AlertDialog(
-      title: Text("Reserving removed") ,
-      content: Text("Check your cart"),
-    ) );
-      
+    showDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+              title: Text("Reserving removed"),
+              content: Text("Check your cart"),
+            ));
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,43 +34,38 @@ class _CartScreenState extends State<CartScreen> {
         data: HotelAppTheme.buildLightTheme(),
         child: Container(
           child: Scaffold(
-            backgroundColor: HotelAppTheme.buildLightTheme().canvasColor,
-            body: Consumer<Cart>(builder:(context, value, child) => Column(children: <Widget>[
-              CustomAppBar(title: "Cart"),
-              Expanded(
-                  child: ListView.builder(
-                    itemCount: value.getUserCart().length,
-                    itemBuilder: ((context, index) {
-                      Hotel hotel = value.getUserCart()[index];
+              backgroundColor: HotelAppTheme.buildLightTheme().canvasColor,
+              body: Consumer<Cart>(
+                  builder: (context, value, child) => Column(children: <Widget>[
+                        CustomAppBar(title: "Cart"),
+                        Expanded(
+                            child: ListView.builder(
+                          itemCount: value.getUserCart().length,
+                          itemBuilder: ((context, index) {
+                            Hotel hotel = value.getUserCart()[index];
 
-
-                      return CartItem(
-                      hotel: hotel,
-                      removeFromCart: handleRemoveFromCart,
-                      );
-
-                      
-                    }),
-              )),
-                  Container(
-                    width: 220,
-                      padding: EdgeInsets.only(
-                          top: 12,  bottom: 30),
-                      child: ElevatedButton.icon(
-                          onPressed: () {
-
-                             Navigator.push<dynamic>(
+                            return CartItem(
+                              hotel: hotel,
+                              removeFromCart: handleRemoveFromCart,
+                            );
+                          }),
+                        )),
+                        Container(
+                            width: 220,
+                            padding: EdgeInsets.only(top: 12, bottom: 30),
+                            child: ElevatedButton.icon(
+                                onPressed: () {
+                                  Navigator.push<dynamic>(
                                     context,
                                     MaterialPageRoute<dynamic>(
                                       builder: (BuildContext context) =>
                                           CheckoutScreen(),
                                     ),
                                   );
-                          },
-                          icon: Icon(Icons.shopping_cart),
-                          label: Text("Checkout")))
-            ]))
-          ),
+                                },
+                                icon: Icon(Icons.shopping_cart),
+                                label: Text("Checkout")))
+                      ]))),
         ));
   }
 }
@@ -78,14 +74,24 @@ class CartItem extends StatelessWidget {
   final Hotel hotel;
   final Function(Hotel) removeFromCart;
 
-  const CartItem(
-      {
-      
-      Key? key, required this.hotel, required this.removeFromCart})
+  const CartItem({Key? key, required this.hotel, required this.removeFromCart})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int totalDays(Hotel hotel) {
+      final end = hotel.endDate;
+      final start = hotel.startDate;
+      final difference = end!.difference(start!).inDays;
+
+      return difference;
+    }
+
+    String getFormatted(Hotel hotel) {
+      var formatted = Jiffy.parseFromDateTime(hotel.startDate!).yMMMMd;
+      return  formatted + " (+${totalDays(hotel)} days)";
+    }
+
     return Container(
         width: MediaQuery.of(context).size.width,
         height: 160,
@@ -141,7 +147,7 @@ class CartItem extends StatelessWidget {
                               width: 10,
                             ),
                             Text(
-                              "Meow",
+                              getFormatted(hotel) ?? "no dates",
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                 color: Colors.grey,
@@ -175,7 +181,7 @@ class CartItem extends StatelessWidget {
                   Column(
                     children: [
                       Text(
-                        "\$" + hotel.perNight.toString(),
+                        "\$" + (hotel.perNight * totalDays(hotel)).toString(),
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             color: HotelAppTheme.buildLightTheme().primaryColor,
@@ -203,7 +209,6 @@ class CartItem extends StatelessWidget {
                   label: Text("Remove"))
             ],
           ),
-        )
-    );
+        ));
   }
 }
