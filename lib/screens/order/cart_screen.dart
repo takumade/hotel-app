@@ -39,7 +39,7 @@ class _CartScreenState extends State<CartScreen> {
                   builder: (context, value, child) => Column(children: <Widget>[
                         CustomAppBar(title: "Cart"),
                         Expanded(
-                            child: ListView.builder(
+                            child: value.getUserCart().isEmpty ? Center(child: Text("Your cart is empty.")) : ListView.builder(
                           itemCount: value.getUserCart().length,
                           itemBuilder: ((context, index) {
                             Hotel hotel = value.getUserCart()[index];
