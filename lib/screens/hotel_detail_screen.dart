@@ -36,6 +36,13 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
 
   void reserveHotel(Hotel hotel){
       Provider.of<Cart>(context, listen: false).addHotelToCart(hotel);
+
+      // alert the user
+    showDialog(context: context, builder: (context) => const AlertDialog(
+      title: Text("Hotel Reserved!") ,
+      content: Text("Check your cart"),
+    ) );
+
   }
 
 
@@ -145,7 +152,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       ElevatedButton.icon(
-                                          onPressed: () {},
+                                          onPressed: () => reserveHotel(widget.hotel),
                                           icon: Icon(
                                               Icons.add_shopping_cart_sharp),
                                           label: Text("Reserve")),
