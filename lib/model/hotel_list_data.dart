@@ -75,7 +75,12 @@ class HotelListData extends ChangeNotifier {
     notifyListeners();
   }
 
-  
+  void removeHotelFromCart(HotelListData hotel){
+    userCart.remove(hotel);
+    notifyListeners();  
+  }
+
+
 
 
 
