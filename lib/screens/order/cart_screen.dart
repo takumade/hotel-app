@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hotel_app/model/cart.dart';
 import 'package:hotel_app/model/hotel.dart';
+import 'package:hotel_app/screens/home_screen.dart';
 import 'package:hotel_app/screens/order/checkout_screen.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
@@ -53,7 +54,23 @@ class _CartScreenState extends State<CartScreen> {
                         Container(
                             width: 220,
                             padding: EdgeInsets.only(top: 12, bottom: 30),
-                            child: ElevatedButton.icon(
+                            child: value.getUserCart().isEmpty ? 
+
+                             ElevatedButton.icon(
+                                onPressed: () {
+                                  Navigator.push<dynamic>(
+                                    context,
+                                    MaterialPageRoute<dynamic>(
+                                      builder: (BuildContext context) =>
+                                          HotelHomeScreen(),
+                                    ),
+                                  );
+                                },
+                                icon: Icon(Icons.shopping_cart),
+                                label: Text("Reverse Hotels")) :
+                            
+                            
+                            ElevatedButton.icon(
                                 onPressed: () {
                                   Navigator.push<dynamic>(
                                     context,
