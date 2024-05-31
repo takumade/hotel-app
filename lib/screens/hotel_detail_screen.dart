@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hotel_app/model/cart.dart';
 import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/widgets/details/facilities.dart';
@@ -8,6 +7,7 @@ import 'package:hotel_app/widgets/general/custom_titles.dart';
 import 'package:hotel_app/widgets/home/calendar_popup_view.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import '../themes/hotel_app_theme.dart';
 
 
@@ -22,6 +22,23 @@ class HotelDetailScreen extends StatefulWidget {
 }
 
 class _HotelDetailScreenState extends State<HotelDetailScreen> {
+
+
+  void handleDateChanges(DateTime startDate, DateTime endDate){
+
+      Hotel newHotel = widget.hotel;
+      newHotel.startDate = startDate;
+      newHotel.endDate = endDate;
+
+      Provider.of<Cart>(context, listen: false).updateHotel(widget.hotel, newHotel);
+  }
+
+
+  void reserveHotel(Hotel hotel){
+      Provider.of<Cart>(context, listen: false).addHotelToCart(hotel);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -104,7 +121,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                               margin: EdgeInsets.only(top: 20),
                               child: Row(
                                 children: [
-                                  Icon(Icons.hotel_rounded),
+                                  Icon(Icons.hotel_rounded,  color: Colors.grey[600],),
                                   Container(
                                       margin: EdgeInsets.only(left: 10),
                                       child: Text(widget.hotel.address))
@@ -119,7 +136,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
 
                                         CustomScreenTitle(title: "Facilities"),
                             FacilitiesChip(facilities: widget.hotel.facilities),
-                            ReserveDate(),
+                            ReserveDate(onDateChanges: handleDateChanges,),
                             Center(
                               child: Container(
                                   margin: EdgeInsets.only(top: 20),
@@ -226,7 +243,9 @@ class HotelDetailTitle extends StatelessWidget {
 }
 
 class ReserveDate extends StatefulWidget {
-  const ReserveDate({super.key});
+
+  final Function onDateChanges;
+  const ReserveDate({super.key, required this.onDateChanges});
 
   @override
   State<ReserveDate> createState() => _ReserveDateState();
@@ -250,6 +269,8 @@ class _ReserveDateState extends State<ReserveDate> {
             startDate = startData;
             endDate = endData;
           });
+
+          widget.onDateChanges(startDate, endDate);
         },
         onCancelClick: () {},
       ),
