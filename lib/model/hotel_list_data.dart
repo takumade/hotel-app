@@ -1,4 +1,6 @@
-class HotelListData {
+import 'package:flutter/material.dart';
+
+class HotelListData extends ChangeNotifier {
   HotelListData({
     this.imagePath = '',
     this.titleTxt = '',
@@ -8,6 +10,8 @@ class HotelListData {
     this.rating = 4.5,
     this.perNight = 180,
   });
+
+  List<HotelListData> userCart = [];
 
   String imagePath;
   String titleTxt;
@@ -64,4 +68,16 @@ class HotelListData {
       perNight: 200,
     ),
   ];
+
+
+  void addHotelToCart(HotelListData hotel){
+    userCart.add(hotel);
+    notifyListeners();
+  }
+
+  
+
+
+
+
 }
