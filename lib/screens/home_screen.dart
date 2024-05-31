@@ -1,10 +1,12 @@
+import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/screens/hotel_detail_screen.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 
 import 'package:hotel_app/widgets/home/hotel_list_view.dart';
-import 'package:hotel_app/model/hotel_list_data.dart';
+import 'package:hotel_app/model/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import '../widgets/home/filters_screen.dart';
 import '../themes/hotel_app_theme.dart';
 
@@ -16,7 +18,7 @@ class HotelHomeScreen extends StatefulWidget {
 class _HotelHomeScreenState extends State<HotelHomeScreen>
     with TickerProviderStateMixin {
   AnimationController? animationController;
-  List<HotelListData> hotelList = HotelListData.hotelList;
+  List<Hotel> hotelList =  [];
   final ScrollController _scrollController = ScrollController();
 
   DateTime startDate = DateTime.now();
@@ -26,6 +28,8 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
   void initState() {
     animationController = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
+
+    hotelList = Provider.of<Cart>(context, listen: false).getHotels();
     super.initState();
   }
 
@@ -103,7 +107,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                                               curve: Curves.fastOutSlowIn)));
                               animationController?.forward();
                               return HotelListView(
-                                callback: (HotelListData hotel) {
+                                callback: (Hotel hotel) {
                                   Navigator.push<dynamic>(
                                     context,
                                     MaterialPageRoute<dynamic>(
