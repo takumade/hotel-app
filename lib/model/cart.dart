@@ -84,6 +84,12 @@ class Cart extends ChangeNotifier {
     notifyListeners();
   }
 
+  void updateHotel(Hotel oldHotel, Hotel newHotel){
+    hotelList.remove(oldHotel);
+    hotelList.add(newHotel);
+    notifyListeners();
+  }
+
   void removeHotelFromCart(Hotel hotel){
     userCart.remove(hotel);
     notifyListeners();  
