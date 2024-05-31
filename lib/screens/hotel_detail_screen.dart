@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hotel_app/model/cart.dart';
 import 'package:hotel_app/model/hotel.dart';
+import 'package:hotel_app/widgets/details/facilities.dart';
 import 'package:hotel_app/widgets/general/custom_titles.dart';
 import 'package:hotel_app/widgets/home/calendar_popup_view.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
@@ -159,61 +160,6 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
 }
 
 
-class FacilitiesChip extends StatelessWidget {
-  final List<String> facilities;
-  const FacilitiesChip({
-    super.key, required this.facilities,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 10),
-      child: Column(
-        children: [
-          SizedBox(
-            // width: MediaQuery.of(context).size.width,
-            height: 50,
-            child: ListView.builder(
-              itemCount: facilities.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                
-                return Facility(facility: facilities[index]);
-              },
-            ),
-          ),
-        ],
-      )
-    );
-  }
-}
-
-class Facility extends StatelessWidget {
-  final String facility;
-  const Facility({
-    super.key, required this.facility,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 6),
-      child: FilterChip(
-        onSelected: (bool value) {
-          print("selected");
-        },
-        label: Text(
-          facility,
-          style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87),
-        ),
-        backgroundColor: Colors.grey.withOpacity(0.1),
-        shape: StadiumBorder(side: BorderSide(color: Colors.black12)),
-      ),
-    );
-  }
-}
 
 class HotelDetailTitle extends StatelessWidget {
   const HotelDetailTitle({
@@ -247,16 +193,16 @@ class HotelDetailTitle extends StatelessWidget {
                             Icons.star,
                             color: Colors.amber,
                           ),
-                          Text("4.7")
+                          Text(widget.hotel.rating.toString())
                         ],
                       ),
                       Row(
                         children: [
                           Icon(
                             Icons.location_on,
-                            color: Colors.black87,
+                            color: Colors.grey[600],
                           ),
-                          Text("5 km")
+                          Text(widget.hotel.dist.toString() + " km")
                         ],
                       )
                     ],
