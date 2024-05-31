@@ -12,7 +12,8 @@ class Hotel {
   final List<String> facilities;
   final String about;
   final String address;
-  String? date;
+  DateTime? startDate;
+  DateTime? endDate;
   int? people;
   final int perNight;
 
