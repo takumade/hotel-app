@@ -73,7 +73,6 @@ class HotelListData extends ChangeNotifier {
     return userCart;
   }
 
-
   void addHotelToCart(HotelListData hotel){
     userCart.add(hotel);
     notifyListeners();
@@ -83,10 +82,4 @@ class HotelListData extends ChangeNotifier {
     userCart.remove(hotel);
     notifyListeners();  
   }
-
-
-
-
-
-
 }
