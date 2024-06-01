@@ -68,7 +68,9 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
-                          child: ListView.builder(
+                          child: value.getFavorites().isEmpty ? 
+                          Center(child: Text('No favorites yet.')) :
+                          ListView.builder(
                             itemCount: value.getFavorites().length,
                             padding: const EdgeInsets.only(top: 8),
                             scrollDirection: Axis.vertical,
