@@ -83,7 +83,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                               pinned: true,
                               floating: true,
                               delegate: ContestTabHeader(
-                                getFilterBarUI(),
+                                getFilterBarUI(
+                                  count: hotelList.length
+                                ),
                               ),
                             ),
                           ];
@@ -361,7 +363,9 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
     );
   }
 
-  Widget getFilterBarUI() {
+  Widget getFilterBarUI({required int count}) {
+ 
+
     return Stack(
       children: <Widget>[    
         Container(
@@ -375,7 +379,7 @@ class _HotelHomeScreenState extends State<HotelHomeScreen>
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      '530 hotels found',
+                      '${count} hotels found',
                       style: TextStyle(
                         fontWeight: FontWeight.w100,
                         fontSize: 16,
