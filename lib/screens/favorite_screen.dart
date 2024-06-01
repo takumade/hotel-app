@@ -2,13 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:hotel_app/model/favorites.dart';
 import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
-import 'package:hotel_app/widgets/favorite/fav_hotel_list_view.dart';
 import 'package:hotel_app/widgets/general/app_bar.dart';
 
 import 'package:hotel_app/screens/hotel_detail_screen.dart';
-
-import 'package:hotel_app/widgets/home/hotel_list_view.dart';
-import 'package:hotel_app/model/cart.dart';
 import 'package:hotel_app/model/cart.dart';
 import 'package:provider/provider.dart';
 
