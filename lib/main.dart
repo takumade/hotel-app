@@ -1,5 +1,6 @@
 
 import 'package:hotel_app/model/cart.dart';
+import 'package:hotel_app/model/favorites.dart';
 import 'package:hotel_app/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -13,7 +14,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return ChangeNotifierProvider(create: (context) =>  Cart(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => Cart()),
+        ChangeNotifierProvider(create: (_) => Favorites())
+      ],
       builder: (context, child) =>MaterialApp(
       title: 'Hotel App',
       debugShowCheckedModeBanner: true,
