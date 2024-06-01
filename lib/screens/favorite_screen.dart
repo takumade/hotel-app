@@ -12,7 +12,6 @@ import 'package:hotel_app/model/cart.dart';
 import 'package:hotel_app/model/cart.dart';
 import 'package:provider/provider.dart';
 
-
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
 
@@ -20,12 +19,12 @@ class FavoriteScreen extends StatefulWidget {
   State<FavoriteScreen> createState() => _FavoriteScreenState();
 }
 
-class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStateMixin {
-
-   AnimationController? animationController;
+class _FavoriteScreenState extends State<FavoriteScreen>
+    with TickerProviderStateMixin {
+  AnimationController? animationController;
   List<Hotel> hotelList = [];
 
-   @override
+  @override
   void initState() {
     animationController = AnimationController(
         duration: const Duration(milliseconds: 1000), vsync: this);
@@ -45,7 +44,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
     super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -53,17 +51,23 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
         child: Container(
           child: Scaffold(
             backgroundColor: HotelAppTheme.buildLightTheme().canvasColor,
-            body: Consumer<Favorites>(builder: (context, value, child) => Column(children: <Widget>[
-              CustomAppBar(title: "Favorites"),
-              SizedBox(height: 12,),
-              Expanded(
+            body: Consumer<Favorites>(
+                builder: (context, value, child) => Column(children: <Widget>[
+                      CustomAppBar(title: "Favorites"),
+                      SizedBox(
+                        height: 12,
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           child: ListView.builder(
                             itemCount: value.getFavorites().length,
                             padding: const EdgeInsets.only(top: 8),
                             scrollDirection: Axis.vertical,
                             itemBuilder: (BuildContext context, int index) {
-                              final int count =
-                                  value.getFavorites().length > 10 ? 10 : value.getFavorites().length;
+                              final int count = value.getFavorites().length > 10
+                                  ? 10
+                                  : value.getFavorites().length;
                               final Animation<double> animation =
                                   Tween<double>(begin: 0.0, end: 1.0).animate(
                                       CurvedAnimation(
@@ -72,20 +76,28 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
                                               (1 / count) * index, 1.0,
                                               curve: Curves.fastOutSlowIn)));
                               animationController?.forward();
-
+                          
                               Hotel hotel = value.getFavorites()[index];
-
-                              return ListTile(
+                          
+                              return Container(
+                                decoration: BoxDecoration(
+                                    color: Colors.grey[300],
+                                    borderRadius: BorderRadius.circular(12)),
+                                child: ListTile(
                                   leading: Image.asset(hotel.imagePath),
                                   title: Text(hotel.titleTxt),
+                                  subtitle: Row(
+                                    children: [
+                                      Icon(Icons.star, color: Colors.yellow),
+                                      SizedBox(
+                                        width: 4,
+                                      ),
+                                      Text(hotel.rating.toString()),
+                                    ],
+                                  ),
                                   trailing: IconButton(
-                                    onPressed: (){
-
-                                      
-                                    }, icon: Icon(Icons.delete)),
-
-
-                                  onTap: (){
+                                      onPressed: () {}, icon: Icon(Icons.delete)),
+                                  onTap: () {
                                     Navigator.push<dynamic>(
                                       context,
                                       MaterialPageRoute<dynamic>(
@@ -94,11 +106,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
                                       ),
                                     );
                                   },
-                                
-                                );
-
-
-
+                                ),
+                              );
+                          
                               // return FavoriteHotelListView(
                               //   callback: (Hotel hotel) {
                               //     Navigator.push<dynamic>(
@@ -116,7 +126,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
                             },
                           ),
                         ),
-            ])),
+                      ),
+                    ])),
           ),
         ));
   }
