@@ -57,6 +57,16 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
 
   }
 
+  void removeHotelFromFavorites(Hotel hotel){
+      Provider.of<Favorites>(context, listen: false).removeFromFavories(hotel);
+
+      // alert the user
+    showDialog(context: context, builder: (context) => const AlertDialog(
+      title: Text("Removed Successfully!")
+    ) );
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +85,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                 onTap: () {
                   FocusScope.of(context).requestFocus(FocusNode());
                 },
-                child: Column(children: <Widget>[
+                child: Consumer<Favorites>(builder: (context, value, child) => Column(children: <Widget>[
                   CustomAppBar(title: "Details"),
                   Expanded(
                       child: ListView(
@@ -165,7 +175,12 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                           icon: Icon(
                                               Icons.add_shopping_cart_sharp),
                                           label: Text("Reserve")),
-                                      TextButton.icon(
+                                     value.hotelIsFavorite(widget.hotel) ?
+                                     
+                                     TextButton.icon(
+                                          onPressed: () => removeHotelFromFavorites(widget.hotel),
+                                          icon: Icon(Icons.favorite_border_rounded),
+                                          label: Text("Remove")) : TextButton.icon(
                                           onPressed: () => addHotelToFavorites(widget.hotel),
                                           icon: Icon(Icons.favorite),
                                           label: Text("Add to Favorites"))
@@ -183,7 +198,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                     ],
                   ))
                 ]),
-              ),
+              )),
             ],
           ),
         ),
