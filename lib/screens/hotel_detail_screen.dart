@@ -206,27 +206,31 @@ class HotelDetailTitle extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                         fontSize: 22,
                       )),
-                  Row(
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                          Text(widget.hotel.rating.toString())
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.location_on,
-                            color: Colors.grey[600],
-                          ),
-                          Text(widget.hotel.dist.toString() + " km")
-                        ],
-                      )
-                    ],
+                  Container(
+                    margin: EdgeInsets.only(top: 5),
+                    child: Row(
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.star,
+                              color: Colors.amber,
+                            ),
+                            Text(widget.hotel.rating.toString())
+                          ],
+                        ),
+                        SizedBox(width: 12,),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: Colors.grey[600],
+                            ),
+                            Text(widget.hotel.dist.toString() + " km")
+                          ],
+                        )
+                      ],
+                    ),
                   )
                 ]),
               ],
