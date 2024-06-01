@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:hotel_app/model/cart.dart';
+import 'package:hotel_app/model/favorites.dart';
 import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/widgets/details/facilities.dart';
 import 'package:hotel_app/widgets/general/custom_titles.dart';
@@ -41,6 +42,17 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
     showDialog(context: context, builder: (context) => const AlertDialog(
       title: Text("Hotel Reserved!") ,
       content: Text("Check your cart"),
+    ) );
+
+  }
+
+  void addHotelToFavorites(Hotel hotel){
+      Provider.of<Favorites>(context, listen: false).addToFavories(hotel);
+
+      // alert the user
+    showDialog(context: context, builder: (context) => const AlertDialog(
+      title: Text("Hotel added to favorites!") ,
+      content: Text("Check your favorites"),
     ) );
 
   }
@@ -154,7 +166,7 @@ class _HotelDetailScreenState extends State<HotelDetailScreen> {
                                               Icons.add_shopping_cart_sharp),
                                           label: Text("Reserve")),
                                       TextButton.icon(
-                                          onPressed: () {},
+                                          onPressed: () => addHotelToFavorites(widget.hotel),
                                           icon: Icon(Icons.favorite),
                                           label: Text("Add to Favorites"))
                                     ],
