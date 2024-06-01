@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hotel_app/model/favorites.dart';
 import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:hotel_app/widgets/favorite/fav_hotel_list_view.dart';
@@ -52,17 +53,17 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
         child: Container(
           child: Scaffold(
             backgroundColor: HotelAppTheme.buildLightTheme().canvasColor,
-            body: Column(children: <Widget>[
+            body: Consumer<Favorites>(builder: (context, value, child) => Column(children: <Widget>[
               CustomAppBar(title: "Favorites"),
               SizedBox(height: 12,),
               Expanded(
                           child: ListView.builder(
-                            itemCount: hotelList.length,
+                            itemCount: value.getFavorites().length,
                             padding: const EdgeInsets.only(top: 8),
                             scrollDirection: Axis.vertical,
                             itemBuilder: (BuildContext context, int index) {
                               final int count =
-                                  hotelList.length > 10 ? 10 : hotelList.length;
+                                  value.getFavorites().length > 10 ? 10 : value.getFavorites().length;
                               final Animation<double> animation =
                                   Tween<double>(begin: 0.0, end: 1.0).animate(
                                       CurvedAnimation(
@@ -71,24 +72,51 @@ class _FavoriteScreenState extends State<FavoriteScreen> with TickerProviderStat
                                               (1 / count) * index, 1.0,
                                               curve: Curves.fastOutSlowIn)));
                               animationController?.forward();
-                              return FavoriteHotelListView(
-                                callback: (Hotel hotel) {
-                                  Navigator.push<dynamic>(
-                                    context,
-                                    MaterialPageRoute<dynamic>(
-                                      builder: (BuildContext context) =>
-                                          HotelDetailScreen(hotel: hotel),
-                                    ),
-                                  );
-                                },
-                                hotelData: hotelList[index],
-                                animation: animation,
-                                animationController: animationController!,
-                              );
+
+                              Hotel hotel = value.getFavorites()[index];
+
+                              return ListTile(
+                                  leading: Image.asset(hotel.imagePath),
+                                  title: Text(hotel.titleTxt),
+                                  trailing: IconButton(
+                                    onPressed: (){
+
+                                      
+                                    }, icon: Icon(Icons.delete)),
+
+
+                                  onTap: (){
+                                    Navigator.push<dynamic>(
+                                      context,
+                                      MaterialPageRoute<dynamic>(
+                                        builder: (BuildContext context) =>
+                                            HotelDetailScreen(hotel: hotel),
+                                      ),
+                                    );
+                                  },
+                                
+                                );
+
+
+
+                              // return FavoriteHotelListView(
+                              //   callback: (Hotel hotel) {
+                              //     Navigator.push<dynamic>(
+                              //       context,
+                              //       MaterialPageRoute<dynamic>(
+                              //         builder: (BuildContext context) =>
+                              //             HotelDetailScreen(hotel: hotel),
+                              //       ),
+                              //     );
+                              //   },
+                              //   hotelData: hotelList[index],
+                              //   animation: animation,
+                              //   animationController: animationController!,
+                              // );
                             },
                           ),
                         ),
-            ]),
+            ])),
           ),
         ));
   }
