@@ -44,6 +44,18 @@ class _FavoriteScreenState extends State<FavoriteScreen>
     super.dispose();
   }
 
+  void removeFromFavorites (Hotel hotel){
+
+
+
+     // alert the user
+    showDialog(context: context, builder: (context) => const AlertDialog(
+      title: Text("Removed successfully!") 
+    ) );
+
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -65,64 +77,14 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                             padding: const EdgeInsets.only(top: 8),
                             scrollDirection: Axis.vertical,
                             itemBuilder: (BuildContext context, int index) {
-                              final int count = value.getFavorites().length > 10
-                                  ? 10
-                                  : value.getFavorites().length;
-                              final Animation<double> animation =
-                                  Tween<double>(begin: 0.0, end: 1.0).animate(
-                                      CurvedAnimation(
-                                          parent: animationController!,
-                                          curve: Interval(
-                                              (1 / count) * index, 1.0,
-                                              curve: Curves.fastOutSlowIn)));
-                              animationController?.forward();
                           
                               Hotel hotel = value.getFavorites()[index];
                           
-                              return Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.grey[300],
-                                    borderRadius: BorderRadius.circular(12)),
-                                child: ListTile(
-                                  leading: Image.asset(hotel.imagePath),
-                                  title: Text(hotel.titleTxt),
-                                  subtitle: Row(
-                                    children: [
-                                      Icon(Icons.star, color: Colors.yellow),
-                                      SizedBox(
-                                        width: 4,
-                                      ),
-                                      Text(hotel.rating.toString()),
-                                    ],
-                                  ),
-                                  trailing: IconButton(
-                                      onPressed: () {}, icon: Icon(Icons.delete)),
-                                  onTap: () {
-                                    Navigator.push<dynamic>(
-                                      context,
-                                      MaterialPageRoute<dynamic>(
-                                        builder: (BuildContext context) =>
-                                            HotelDetailScreen(hotel: hotel),
-                                      ),
-                                    );
-                                  },
-                                ),
-                              );
+                              return FavoriteItem(
+                                hotel: hotel, 
+                                removeFromFavorites: removeFromFavorites,);
                           
-                              // return FavoriteHotelListView(
-                              //   callback: (Hotel hotel) {
-                              //     Navigator.push<dynamic>(
-                              //       context,
-                              //       MaterialPageRoute<dynamic>(
-                              //         builder: (BuildContext context) =>
-                              //             HotelDetailScreen(hotel: hotel),
-                              //       ),
-                              //     );
-                              //   },
-                              //   hotelData: hotelList[index],
-                              //   animation: animation,
-                              //   animationController: animationController!,
-                              // );
+                    
                             },
                           ),
                         ),
@@ -133,142 +95,48 @@ class _FavoriteScreenState extends State<FavoriteScreen>
   }
 }
 
-class CartItem extends StatelessWidget {
-  final String text;
-  final String imageUrl;
-  final String subtitle;
-  final Function() onPressed;
+class FavoriteItem extends StatelessWidget {
+  const FavoriteItem({
+    super.key,
+    required this.hotel,
+    required this.removeFromFavorites
+  });
 
-  const CartItem(
-      {required this.text,
-      required this.imageUrl,
-      required this.subtitle,
-      required this.onPressed,
-      Key? key})
-      : super(key: key);
+  final Hotel hotel;
+  final Function(Hotel) removeFromFavorites;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 160,
-        padding: const EdgeInsets.all(12.0),
-        margin: EdgeInsets.only(top: 12, left: 16, right: 16.0),
-        decoration: BoxDecoration(
-          color: HotelAppTheme.buildLightTheme().colorScheme.background,
-          borderRadius: BorderRadius.all(Radius.circular(18)),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
+    return Container(
+      margin: EdgeInsets.only(bottom: 12),
+      decoration: BoxDecoration(
+          color: Colors.grey[200],
+          borderRadius: BorderRadius.circular(12)),
+      child: ListTile(
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(3),
+          child: Image.asset(hotel.imagePath, width: 80)),
+        title: Text(hotel.titleTxt),
+        subtitle: Row(
+          children: [
+            Icon(Icons.star, color: Colors.yellow),
+            SizedBox(
+              width: 4,
             ),
+            Text(hotel.rating.toString()),
           ],
         ),
-        child: Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  // ClipRRect(
-                  //     borderRadius: BorderRadius.circular(9.0),
-                  //     child: Image.network(
-                  //         "https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                  //         height: 59,
-                  //         fit: BoxFit.cover)),
-
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(text,
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            )),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Icon(Icons.date_range,
-                                color: Colors.black87.withOpacity(0.5)),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              subtitle,
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.people,
-                              color: Colors.black87.withOpacity(0.5),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Text(
-                              "3 people",
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                color: Colors.grey,
-                                fontWeight: FontWeight.normal,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        "\$55",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: HotelAppTheme.buildLightTheme().primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30),
-                      ),
-                      Text(
-                        "/night",
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Colors.grey,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 12),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              TextButton.icon(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      foregroundColor:
-                          MaterialStateProperty.all<Color>(Colors.red)),
-                  icon: Icon(Icons.delete_outline_rounded),
-                  label: Text("Remove"))
-            ],
-          ),
-        ),
+        trailing: IconButton(
+            onPressed: () => removeFromFavorites(hotel), icon: Icon(Icons.delete)),
+        onTap: () {
+          Navigator.push<dynamic>(
+            context,
+            MaterialPageRoute<dynamic>(
+              builder: (BuildContext context) =>
+                  HotelDetailScreen(hotel: hotel),
+            ),
+          );
+        },
       ),
     );
   }
