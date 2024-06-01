@@ -6,7 +6,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
-class HotelListView extends StatelessWidget {
+class HotelListView extends StatefulWidget {
   const HotelListView(
       {Key? key,
       this.hotelData,
@@ -21,21 +21,51 @@ class HotelListView extends StatelessWidget {
   final Animation<double>? animation;
 
   @override
+  State<HotelListView> createState() => _HotelListViewState();
+}
+
+class _HotelListViewState extends State<HotelListView> {
+
+  void addOrRemoveFromFavorites(Hotel hotel) {
+      bool isFavoured = Provider.of<Favorites>(context, listen: false)
+          .hotelIsFavorite(hotel);
+      if (!isFavoured) {
+        Provider.of<Favorites>(context, listen: false)
+            .addToFavories(hotel);
+
+        // alert the user
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Added to favorites!'),
+        ));
+      } else {
+        Provider.of<Favorites>(context, listen: false)
+            .removeFromFavories(hotel);
+
+        // alert the user
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Removed from favorites!'),
+        ));
+      }
+    }
+
+  @override
   Widget build(BuildContext context) {
+    
+
     return AnimatedBuilder(
-      animation: animationController!,
+      animation: widget.animationController!,
       builder: (BuildContext context, Widget? child) {
         return FadeTransition(
-          opacity: animation!,
+          opacity: widget.animation!,
           child: Transform(
             transform: Matrix4.translationValues(
-                0.0, 50 * (1.0 - animation!.value), 0.0),
+                0.0, 50 * (1.0 - widget.animation!.value), 0.0),
             child: Padding(
               padding: const EdgeInsets.only(
                   left: 24, right: 24, top: 8, bottom: 16),
               child: InkWell(
                 splashColor: Colors.transparent,
-                onTap: () => {callback!(hotelData)},
+                onTap: () => {widget.callback!(widget.hotelData)},
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(16.0)),
@@ -56,7 +86,7 @@ class HotelListView extends StatelessWidget {
                             AspectRatio(
                               aspectRatio: 2,
                               child: Image.asset(
-                                hotelData!.imagePath,
+                                widget.hotelData!.imagePath,
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -79,7 +109,7 @@ class HotelListView extends StatelessWidget {
                                               CrossAxisAlignment.start,
                                           children: <Widget>[
                                             Text(
-                                              hotelData!.titleTxt,
+                                              widget.hotelData!.titleTxt,
                                               textAlign: TextAlign.left,
                                               style: TextStyle(
                                                 fontWeight: FontWeight.w600,
@@ -93,7 +123,7 @@ class HotelListView extends StatelessWidget {
                                                   MainAxisAlignment.start,
                                               children: <Widget>[
                                                 Text(
-                                                  hotelData!.subTxt,
+                                                  widget.hotelData!.subTxt,
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       color: Colors.grey
@@ -118,7 +148,7 @@ class HotelListView extends StatelessWidget {
                                                 ),
                                                 Expanded(
                                                   child: Text(
-                                                    '${hotelData!.dist.toStringAsFixed(1)} km to city',
+                                                    '${widget.hotelData!.dist.toStringAsFixed(1)} km to city',
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     style: TextStyle(
@@ -136,7 +166,7 @@ class HotelListView extends StatelessWidget {
                                                 children: <Widget>[
                                                   RatingBar(
                                                     initialRating:
-                                                        hotelData!.rating,
+                                                        widget.hotelData!.rating,
                                                     direction: Axis.horizontal,
                                                     allowHalfRating: true,
                                                     itemCount: 5,
@@ -163,7 +193,7 @@ class HotelListView extends StatelessWidget {
                                                     },
                                                   ),
                                                   Text(
-                                                    ' ${hotelData!.reviews} Reviews',
+                                                    ' ${widget.hotelData!.reviews} Reviews',
                                                     style: TextStyle(
                                                         fontSize: 14,
                                                         color: Colors.grey
@@ -187,7 +217,7 @@ class HotelListView extends StatelessWidget {
                                           CrossAxisAlignment.end,
                                       children: <Widget>[
                                         Text(
-                                          '\$${hotelData!.perNight}',
+                                          '\$${widget.hotelData!.perNight}',
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
                                               fontWeight: FontWeight.w600,
@@ -221,33 +251,13 @@ class HotelListView extends StatelessWidget {
                                         borderRadius: const BorderRadius.all(
                                           Radius.circular(32.0),
                                         ),
-                                        onTap: () {
-
-                                          if(!value.hotelIsFavorite(hotelData!)){
-                                              value.addToFavories(hotelData!);
-
-                                              // alert the user
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                content:
-                                                    Text('Added to favorites!'),
-                                              ));
-                                          }else{
-                                            value.removeFromFavories(hotelData!);
-
-                                              // alert the user
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                content:
-                                                    Text('Removed from favorites!'),
-                                              ));
-                                          }
-                                        },
+                                        onTap: () => addOrRemoveFromFavorites(widget.hotelData!),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Icon(
-                                            !value.hotelIsFavorite(hotelData!) ? 
-                                            Icons.favorite_border : Icons.favorite,
+                                            !value.hotelIsFavorite(widget.hotelData!)
+                                                ? Icons.favorite_border
+                                                : Icons.favorite,
                                             color:
                                                 HotelAppTheme.buildLightTheme()
                                                     .primaryColor,
