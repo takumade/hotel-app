@@ -46,7 +46,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
 
   void removeFromFavorites (Hotel hotel){
 
-
+    Provider.of<Favorites>(context, listen: false).removeFromFavories(hotel);
 
      // alert the user
     showDialog(context: context, builder: (context) => const AlertDialog(
