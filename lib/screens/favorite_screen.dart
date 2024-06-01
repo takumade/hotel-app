@@ -105,14 +105,15 @@ class FavoriteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 12),
+      padding: EdgeInsets.symmetric(vertical: 5),
       decoration: BoxDecoration(
           color: Colors.grey[200],
           borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         leading: ClipRRect(
-          borderRadius: BorderRadius.circular(3),
-          child: Image.asset(hotel.imagePath, width: 80)),
-        title: Text(hotel.titleTxt),
+          borderRadius: BorderRadius.circular(6),
+          child: Image.asset(hotel.imagePath, width: 80, height: 200, fit: BoxFit.cover,)),
+        title: Text(hotel.titleTxt, overflow: TextOverflow.ellipsis,),
         subtitle: Row(
           children: [
             Icon(Icons.star, color: Colors.yellow),
