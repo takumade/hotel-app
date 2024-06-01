@@ -222,17 +222,32 @@ class HotelListView extends StatelessWidget {
                                           Radius.circular(32.0),
                                         ),
                                         onTap: () {
-                                          value.addToFavories(hotelData!);
 
-                                          // alert the user
-                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  content: Text('Added to favorites!'),
-));
+                                          if(!value.hotelIsFavorite(hotelData!)){
+                                              value.addToFavories(hotelData!);
+
+                                              // alert the user
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                content:
+                                                    Text('Added to favorites!'),
+                                              ));
+                                          }else{
+                                            value.removeFromFavories(hotelData!);
+
+                                              // alert the user
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                content:
+                                                    Text('Removed from favorites!'),
+                                              ));
+                                          }
                                         },
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Icon(
-                                            Icons.favorite_border,
+                                            !value.hotelIsFavorite(hotelData!) ? 
+                                            Icons.favorite_border : Icons.favorite,
                                             color:
                                                 HotelAppTheme.buildLightTheme()
                                                     .primaryColor,
