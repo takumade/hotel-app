@@ -45,18 +45,10 @@ class Facility extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: 6),
-      child: FilterChip(
-        onSelected: (bool value) {
-          print("selected");
-        },
-        label: Text(
-          facility,
-          style: TextStyle(
-              fontSize: 16, fontWeight: FontWeight.w600, color: Colors.black87),
-        ),
-        backgroundColor: Colors.grey.withOpacity(0.1),
-        shape: StadiumBorder(side: BorderSide(color: Colors.black12)),
-      ),
+      
+      child: Chip(label: Text(facility),
+      backgroundColor: Colors.grey.withOpacity(0.2),
+      shape: StadiumBorder(side: BorderSide(color: Colors.black.withOpacity(0.0))),),
     );
   }
 }
