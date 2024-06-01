@@ -19,4 +19,8 @@ class Favorites extends ChangeNotifier {
     favorites.remove(hotel);
     notifyListeners();
   }
+
+  bool hotelIsFavorite(Hotel hotel){
+    return favorites.contains(hotel);
+  }
 }
