@@ -1,10 +1,10 @@
+import 'package:hotel_app/model/favorites.dart';
 import 'package:hotel_app/model/hotel.dart';
 import 'package:hotel_app/themes/hotel_app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import '../../model/cart.dart';
+import 'package:provider/provider.dart';
 
 class HotelListView extends StatelessWidget {
   const HotelListView(
@@ -35,9 +35,7 @@ class HotelListView extends StatelessWidget {
                   left: 24, right: 24, top: 8, bottom: 16),
               child: InkWell(
                 splashColor: Colors.transparent,
-                onTap: () => {
-                  callback!(hotelData)
-                },
+                onTap: () => {callback!(hotelData)},
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: const BorderRadius.all(Radius.circular(16.0)),
@@ -104,7 +102,6 @@ class HotelListView extends StatelessWidget {
                                                 const SizedBox(
                                                   width: 4,
                                                 ),
-                                                
                                               ],
                                             ),
                                             Row(
@@ -116,7 +113,9 @@ class HotelListView extends StatelessWidget {
                                                           .buildLightTheme()
                                                       .primaryColor,
                                                 ),
-                                                SizedBox( width: 5,),
+                                                SizedBox(
+                                                  width: 5,
+                                                ),
                                                 Expanded(
                                                   child: Text(
                                                     '${hotelData!.dist.toStringAsFixed(1)} km to city',
@@ -191,10 +190,11 @@ class HotelListView extends StatelessWidget {
                                           '\$${hotelData!.perNight}',
                                           textAlign: TextAlign.left,
                                           style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 22,
-                                            color: HotelAppTheme.buildLightTheme().primaryColor
-                                          ),
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: 22,
+                                              color: HotelAppTheme
+                                                      .buildLightTheme()
+                                                  .primaryColor),
                                         ),
                                         Text(
                                           '/per night',
@@ -212,26 +212,34 @@ class HotelListView extends StatelessWidget {
                           ],
                         ),
                         Positioned(
-                          top: 8,
-                          right: 8,
-                          child: Material(
-                            color: Colors.transparent,
-                            child: InkWell(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(32.0),
-                              ),
-                              onTap: () {},
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.favorite_border,
-                                  color: HotelAppTheme.buildLightTheme()
-                                      .primaryColor,
-                                ),
-                              ),
-                            ),
-                          ),
-                        )
+                            top: 8,
+                            right: 8,
+                            child: Consumer<Favorites>(
+                                builder: (context, value, child) => Material(
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                        borderRadius: const BorderRadius.all(
+                                          Radius.circular(32.0),
+                                        ),
+                                        onTap: () {
+                                          value.addToFavories(hotelData!);
+
+                                          // alert the user
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  content: Text('Added to favorites!'),
+));
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Icon(
+                                            Icons.favorite_border,
+                                            color:
+                                                HotelAppTheme.buildLightTheme()
+                                                    .primaryColor,
+                                          ),
+                                        ),
+                                      ),
+                                    )))
                       ],
                     ),
                   ),
