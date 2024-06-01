@@ -7,6 +7,9 @@ class Favorites extends ChangeNotifier {
   List <Hotel> favorites = [];
 
 
+  List<Hotel> getFavorites() => favorites;
+
+
   void  addToFavories(Hotel hotel) {
     favorites.add(hotel);
     notifyListeners();
