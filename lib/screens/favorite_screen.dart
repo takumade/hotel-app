@@ -50,7 +50,7 @@ class _FavoriteScreenState extends State<FavoriteScreen>
 
      // alert the user
     showDialog(context: context, builder: (context) => const AlertDialog(
-      title: Text("Removed successfully!") 
+      title: Text("Removed successfully!", textAlign: TextAlign.center) 
     ) );
 
 
@@ -83,8 +83,6 @@ class _FavoriteScreenState extends State<FavoriteScreen>
                               return FavoriteItem(
                                 hotel: hotel, 
                                 removeFromFavorites: removeFromFavorites,);
-                          
-                    
                             },
                           ),
                         ),
